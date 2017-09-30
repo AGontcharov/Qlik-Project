@@ -1,22 +1,3 @@
-.address table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-.address td, .address th {
-	padding: 8px;
-	border: 1px solid #dddddd;
-	text-align: center;
-}
-
-.address tr:nth-child(even) {
-    background-color: #e6e6e6;
-}
-
-.btn-wrapper {
-	text-align: center;
-}
-
 .inbox h3, .compose h3 {
 	padding-top: 20px;
 	padding-bottom: 8px;

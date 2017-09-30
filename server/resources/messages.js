@@ -44,8 +44,14 @@ module.exports = {
       // HTTP 404 Not Found
       if (!rows.length) return res.status(404).send('Message not found');
 
+      // Check if palindrome action has been called on the message
+      if (req.route.path === '/messages/:messageID/palindrome') {
+        res.locals.palindrome = rows[0].Content;
+        next();
+      }
+
       // HTTP 200 Ok
-      return res.status(200).send(rows);
+      else return res.status(200).send(rows);
     });
   },
 
@@ -64,6 +70,28 @@ module.exports = {
       // HTTP 204 Deleted
       return res.status(204).send('Message delete');
     });
+  },
+
+  isPalindrome: function(req, res, next) {
+    console.log('Validating palindrome: ', res.locals.palindrome);
+
+    // Prevent case insensitive comparison
+    var palindrome = res.locals.palindrome.toUpperCase();
+    var strlen = palindrome.length - 1;
+
+    // Iterate over the string
+    for (i = 0; i < palindrome.length; i++) {
+      
+      // Post decrement strlen after comparison
+      if (palindrome[i] !== palindrome[strlen--]) {
+
+        // HTTP 200k Ok False
+        return res.status(200).send(false);
+      }
+    }
+
+    // HTTP 200 Ok True
+    return res.status(200).send(true);
   }
 }
 

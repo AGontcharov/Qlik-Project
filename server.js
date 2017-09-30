@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 
+// Load body parser to parse requests
 var bodyParser = require('body-parser');
 
 // Configure the port which the app is ran

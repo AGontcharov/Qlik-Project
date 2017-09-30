@@ -30,6 +30,6 @@ apiRouter.get('/messages', messages.getMessages);
 apiRouter.get('/messages/:messageID', messages.getMessageByID);
 apiRouter.delete('/messages/:messageID', messages.deleteMessageByID);
 
-// apiRouter.get('/messages/:messageID/palindrome', );
+apiRouter.get('/messages/:messageID/palindrome', messages.getMessageByID, messages.isPalindrome);
 
 module.exports = apiRouter;
