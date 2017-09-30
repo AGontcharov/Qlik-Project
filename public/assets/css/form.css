@@ -1,0 +1,47 @@
+.form-container {
+	position: fixed;
+  	top: 35%;
+  	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.form-container h1 {
+	white-space: nowrap;
+}
+
+div.form, .alternative {
+	width: 450px;
+	background: #f2f2f2;
+	border: solid black 1px;
+	text-align: center;
+	padding: 20px 0px;
+
+	display: block;
+	margin: 0 auto;
+}
+
+.submit-input {
+	padding-top: 10px;
+}
+
+
+/* 
+ * Alternative link
+ */
+.alternative {
+	margin-top: 15px;
+}
+
+.alternative p, .alternative a {
+	font-size: 14px;
+	margin: 0;
+}
+
+
+/* 
+ * Form validation
+ */
+ .form-error {
+ 	padding-top: 3px;
+ 	color: #ff3333;
+ }

@@ -1,0 +1,27 @@
+/*
+ * Top level CSS style
+ */
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background: #F9F9F9;
+}
+
+p, a {
+	font-size: 16px;
+}
+
+p {
+	color: #555555;
+}
+
+h1, h2, h3 {
+	text-align: center;
+}
+
+.header {
+	background: #5ea819;
+	color: white;
+	border: solid black 1px;
+	padding: 10px 0;
+}

@@ -1,0 +1,30 @@
+<div class="form-container">
+  <div class="form">
+
+    <!-- Register/Sign Up form -->
+    <form name="registerForm" method="post" ng-submit="submit()" novalidate>
+
+      <!-- Username -->
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" ng-model="account.username" autofocus required>
+      <div class="form-error" ng-show="(registerForm.$submitted || registerForm.username.$dirty) && registerForm.username.$invalid">
+        <span ng-show="registerForm.username.$error.required">Username is required</span>
+      </div>
+
+      <!-- Submit button -->
+      <div class="submit-input">
+        <input type="submit" value="Create account">
+      </div>
+
+      <!-- Submit feedback -->
+      <div class="form-error" ng-show="error">
+        <span>Username already exists</span>
+      </div>
+    </form>
+  </div>
+
+ <!-- Login page -->
+  <div class="alternative">
+    <p>Already have an account? <a href="/login">Log in</a></p>
+  </div>
+</div>
