@@ -5,10 +5,19 @@
 	border-color: #cccccc;
 }
 
+.compose, .inbox {
+	padding-top: 20px;
+}
+
+.list-group, .compose form {
+	padding-top: 20px;
+}
+
 .compose button {
 	margin-top: 8px;
 }
 
-.list-group, .compose form {
-	padding-top: 10px;
+.list-group button {
+	display: block;
+	margin: 0 auto;
 }

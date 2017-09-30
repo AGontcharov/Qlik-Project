@@ -5,11 +5,29 @@ angular
 	initialize();
 
 	$scope.submit = function() {
-		$scope.message.sender = session.user;
+		$scope.message.username = session.user;
 		console.log($scope.message);
 
 		messageService.createMessage($scope.message).then(function(response) {
 			console.log('Success!');
+			initialize();
+		})
+		.catch(function(error) {
+			console.log(error);
+		});
+	}
+
+	$scope.selectedMessage = function(id) {
+		$scope.selected ? $scope.selected = false : $scope.selected = true;
+		console.log('Message id: ', id);
+	}
+
+	$scope.deleteMessage = function(id) {
+		console.log('Message id: ', id);
+
+		messageService.deleteMessageByID(id).then(function(response) {
+			console.log('messageDeleted');
+			initialize();
 		})
 		.catch(function(error) {
 			console.log(error);
@@ -25,6 +43,7 @@ angular
 		})
 		.catch(function(error) {
 			console.log(error);
+			$scope.newsfeed = false;
 		});
 	}
 }])

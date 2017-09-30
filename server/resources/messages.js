@@ -4,8 +4,8 @@ module.exports = {
 
   postMessage: function(req, res, next) {
                
-    var args = [res.locals.userID, req.body.subject, req.body.sender, req.body.content];
-    db.query("INSERT INTO Messages (ID, Subject, Sender, Content) VALUES (?, ?, ?, ?)", args, function(err, rows, fields) {
+    var args = [res.locals.userID, req.body.subject, req.body.content];
+    db.query("INSERT INTO Messages (ID, Subject, Content) VALUES (?, ?, ?)", args, function(err, rows, fields) {
       
       // HTTP 500 Internal
       if (err) throw err;
@@ -18,8 +18,7 @@ module.exports = {
 
   getMessages: function(req, res, next) {
 
-    // db.query("SELECT MessageID, Subject, Content FROM Messages WHERE ID=?", res.locals.userID, function(err, rows, fields) {
-    db.query("SELECT * FROM Messages", function(err, rows, fields) {
+    db.query("SELECT * FROM Messages INNER JOIN Users on Messages.ID = Users.ID", function(err, rows, fields) {
       
       // HTTP 500 Internal
       if (err) throw err;

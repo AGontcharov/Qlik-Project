@@ -1,3 +1,5 @@
+<div ng-include src="'views/navbar.html'"></div>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-6 col-xs-12">
@@ -7,9 +9,6 @@
         <h3>Post message</h3>
         
         <form name="composeForm" method="post" ng-submit="submit()">
-          <div class="form-group">
-            <input type="text" class="form-control" aria-describedby="recipientHelp" placeholder="Enter recipient" ng-model="message.username" autofocus required>
-          </div>
           <div class="form-group">
             <input type="text" class="form-control" aria-describedby="subjectHelp" placeholder="Enter subject" ng-model="message.subject" required>
           </div>
@@ -26,13 +25,15 @@
         <h3>Newsfeed</h3>
 
         <div class="list-group" ng-show="newsfeed">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="message in messages">
+          <a href="#" ng-click="selected ? selected=false : selected=true" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="message in messages">
+          <!-- <a href="#" ng-click="selectedMessage(message.MessageID)" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="message in messages"> -->
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{message.Sender}}</h5>
+              <h5 class="mb-1">{{message.Username}}</h5>
               <small>{{message.Date | date: "EEE h:m a" }}</small>
             </div>
             <p class="mb-1">{{message.Subject}}</p>
-            <small>{{message.Content}}.</small>
+            <small ng-show="selected">{{message.Content}}.</small>
+            <button type="button" class="btn btn-danger" ng-show="selected" ng-click="deleteMessage(message.MessageID)">Delete</button>
           </a>
         </div>
       </div>

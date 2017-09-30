@@ -16,7 +16,6 @@ CREATE TABLE `Messages` (
 	`MessageID` int(11) NOT NULL AUTO_INCREMENT,
 	`Subject` varchar(255) NOT NULL,
 	`Date` timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	`Sender` varchar(255) NOT NULL,
 	`Content` text NOT NULL,
 	PRIMARY KEY (`MessageID`),
 	FOREIGN KEY (`ID`) REFERENCES `Users` (`ID`)
