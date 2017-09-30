@@ -1,7 +1,9 @@
-.navbar-brand {
-	color: white !important;
+/* change navbar-brand color */
+.navbar a.navbar-brand,
+.navbar a.navbar-brand:hover {
+  color: white;
 }
 
-.navbar a:hover {
+.navbar-nav a:hover {
 	color: white !important;
 }

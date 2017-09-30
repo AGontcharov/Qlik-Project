@@ -5,19 +5,20 @@
 	border-color: #cccccc;
 }
 
-.compose, .inbox {
+.compose, .inbox,
+.list-group, .compose form {
 	padding-top: 20px;
 }
 
-.list-group, .compose form {
-	padding-top: 20px;
+.inbox {
+	padding-bottom: 20px;
 }
 
 .compose button {
 	margin-top: 8px;
 }
 
-.list-group button {
-	display: block;
-	margin: 0 auto;
+.message-actions {
+	text-align: center;
+	padding-top: 8px;
 }

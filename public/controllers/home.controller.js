@@ -34,6 +34,17 @@ angular
 		});
 	}
 
+	$scope.isPalindrome = function(id) {
+		console.log('Message id: ', id);
+
+		messageService.isPalindrome(id).then(function(response) {
+			console.log('palindrome: ', response.data);
+		})
+		.catch(function(error) {
+			console.log(error);
+		});
+	}
+
 	// Private function
 	function initialize() {
 		messageService.getMessages().then(function(response) {

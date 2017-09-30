@@ -22,6 +22,10 @@ angular
 		return $http.delete(BASE_URL + '/messages/' + id).then(successHandle, function() {return errorHandle('Error deleting message by ID') });
 	}
 
+	messageService.isPalindrome = function(id) {
+		return $http.get(BASE_URL + '/messages/' + id + '/palindrome').then(successHandle, function() {return errorHandle('Error checking if message is palindrome') });
+	}
+
 
 	// Private functions
 	function successHandle(response) {
