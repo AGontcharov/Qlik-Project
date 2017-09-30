@@ -8,7 +8,7 @@ var apiRouter = express.Router();
 // Router middleware for every request. 
 apiRouter.use(function(req, res, next) {
   console.log(req.method, req.url);
-  console.log(req.body);
+  console.log(req.body ? req.body : req.params);
   next();
 });
 
@@ -20,6 +20,7 @@ apiRouter.get('/', function(req, res, next) {
 // Users endpoints
 apiRouter.post('/users', users.createUser);
 apiRouter.get('/users', users.getUsers);
+apiRouter.post('/users/login', users.authenticateUser);
 
 // Messages endpoints
 apiRouter.post('/messages', users.getUserID, messages.postMessage);

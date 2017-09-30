@@ -10,6 +10,10 @@ angular
 		return $http.post(BASE_URL + '/users', user).then(successHandle, function() { return errorHandle('Error creating user') });
 	}
 
+	userService.authenticate = function(user) {
+		return $http.post(BASE_URL + '/users/login', user).then(successHandle, function() {return errorHandle('Error authenticating User') });
+	}	
+
 	userService.getUsers = function() {
 		return $http.get(BASE_URL + '/users').then(successHandle, function() {return errorHandle('Error getting list of Users') });
 	}

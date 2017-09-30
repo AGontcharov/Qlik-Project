@@ -1,20 +1,20 @@
 angular
 	.module('qlik')
-	.controller('register', ['$scope', '$location', 'session', 'userService', function($scope, $location, session, userService) {
+	.controller('register', ['$scope', '$location', 'authentication', 'userService', function($scope, $location, authentication, userService) {
 
 	$scope.submit = function() {
 		console.log($scope.account);
+		$scope.account.role = 'GUEST';
+
 		if ($scope.registerForm.$invalid) return;
 
 		userService.createUser($scope.account).then(function(response) {
-			session.create($scope.account.username, "GUEST");
+			authentication.createSession($scope.account);
 			$location.path('/home');
-			// $scope.registerForm.$setPristine();
 		})
 		.catch(function(error) {
 			console.log(error);
 			$scope.error = true;
-			// $scope.registerForm.$setPristine();
 		});
 	}
 }]);

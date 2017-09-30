@@ -29,6 +29,21 @@ module.exports = {
     });
   },
 
+  authenticateUser: function(req, res, next) {
+    db.query("SELECT * FROM Users WHERE Username=? LIMIT 1", req.body.username, function(err, rows, fields) {
+
+      // HTTP 500 Internal
+      // if (err) return res.status(500).send('Server error');
+      if (err) throw err;
+
+      // HTTP 404 Not Found
+      if (!rows.length) return res.status(404).send('User does not exist');
+
+      // HTTP 200 Ok
+      return res.status(200).send('Authenticated');
+    });
+  },
+
   getUsers: function(req, res, next) {
 
     db.query("SELECT Username FROM Users", function(err, rows, fields) {
