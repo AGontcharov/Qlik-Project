@@ -1,6 +1,6 @@
 angular
 	.module('qlik')
-	.controller('home', ['$scope', 'session', 'userService', 'messageService', function($scope, session, userService, messageService) {
+	.controller('home', ['$scope', 'session', 'messageService', function($scope, session, messageService) {
 
 	initialize();
 
@@ -8,6 +8,8 @@ angular
 		$scope.message.username = session.user;
 
 		messageService.createMessage($scope.message).then(function(response) {
+			
+			// Clear message form
 			$scope.message.subject = '';
 			$scope.message.content = '';
 			initialize();
@@ -17,9 +19,8 @@ angular
 		});
 	}
 
-	$scope.selectedMessage = function(id) {
-		$scope.selected ? $scope.selected = false : $scope.selected = true;
-		console.log('Message id: ', id);
+	$scope.selectedMessage = function(message) {
+		message.selected ? message.selected = false : message.selected = true;
 	}
 
 	$scope.deleteMessage = function(id) {
@@ -34,15 +35,17 @@ angular
 		});
 	}
 
-	$scope.isPalindrome = function(id) {
-		console.log('Message id: ', id);
+	$scope.isPalindrome = function(message) {
 
-		messageService.isPalindrome(id).then(function(response) {
-			console.log('palindrome: ', response.data);
+		messageService.isPalindrome(message.MessageID).then(function(response) {
+			message.palindrome = response.data;
 		})
 		.catch(function(error) {
 			console.log(error);
 		});
+
+		// Prevent message contents from closing
+		message.selected = false;
 	}
 
 	// Private function
