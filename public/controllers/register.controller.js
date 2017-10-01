@@ -6,7 +6,6 @@ angular
 		console.log($scope.account);
 
 		if ($scope.registerForm.$invalid) return;
-
 		$scope.account.role = 'GUEST';
 
 		userService.createUser($scope.account).then(function(response) {
