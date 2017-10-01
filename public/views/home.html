@@ -1,3 +1,4 @@
+<!-- Navbar -->
 <div ng-include src="'views/navbar.html'"></div>
 
 <div class="container">
@@ -8,9 +9,10 @@
       <div class="compose">
         <h3>Post message</h3>
         
+        <!-- Compose message form -->
         <form name="composeForm" method="post" ng-submit="submit()">
           <div class="form-group">
-            <input type="text" class="form-control" aria-describedby="subjectHelp" placeholder="Enter subject" ng-model="message.subject" required>
+            <input type="text" class="form-control" aria-describedby="subjectHelp" placeholder="Enter subject" ng-model="message.subject" autofocus required>
           </div>
           <textarea class="form-control" rows="5" placeholder="Message..." ng-model="message.content" required></textarea>
           <button type="submit" class="btn btn-primary">Submit</button>
@@ -19,11 +21,12 @@
     </div>
     <!-- ./col -->
 
-    <!-- Newsfeed -->
+    <!-- Inbox/Newsfeed -->
     <div class="col-lg-6 col-xs-12">
       <div class="inbox">
         <h3>Newsfeed</h3>
 
+        <!-- Message -->
         <div class="list-group" ng-show="newsfeed">
           <a href="#" ng-click="selected ? selected=false : selected=true" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="message in messages">
           <!-- <a href="#" ng-click="selectedMessage(message.MessageID)" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="message in messages"> -->
@@ -41,6 +44,8 @@
           </a>
         </div>
       </div>
+      <!-- ./inbox -->
+
     </div>
     <!-- ./col -->
   </div>

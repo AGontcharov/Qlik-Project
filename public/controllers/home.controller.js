@@ -1,15 +1,15 @@
 angular
 	.module('qlik')
-	.controller('home', ['$scope', '$location', 'session', 'userService', 'messageService', function($scope, $location, session, userService, messageService) {
+	.controller('home', ['$scope', 'session', 'userService', 'messageService', function($scope, session, userService, messageService) {
 
 	initialize();
 
 	$scope.submit = function() {
 		$scope.message.username = session.user;
-		console.log($scope.message);
 
 		messageService.createMessage($scope.message).then(function(response) {
-			console.log('Success!');
+			$scope.message.subject = '';
+			$scope.message.content = '';
 			initialize();
 		})
 		.catch(function(error) {
@@ -49,7 +49,6 @@ angular
 	function initialize() {
 		messageService.getMessages().then(function(response) {
 			$scope.newsfeed = true;
-			console.log(response.data);
 			$scope.messages = response.data;
 		})
 		.catch(function(error) {

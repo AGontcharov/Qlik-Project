@@ -1,30 +1,43 @@
-<div class="form-container">
-  <div class="form">
+<!-- Header -->
+<div class="header"><h1>Qlik Audition Project</h1></div>
 
-    <!-- Register/Sign Up form -->
-    <form name="registerForm" method="post" ng-submit="submit()" novalidate>
+<div class="container">
+  <div class="row">
 
-      <!-- Username -->
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" ng-model="account.username" autofocus required>
-      <div class="form-error" ng-show="(registerForm.$submitted || registerForm.username.$dirty) && registerForm.username.$invalid">
-        <span ng-show="registerForm.username.$error.required">Username is required</span>
+    <div class="form-container">
+
+      <!-- Register/Sign Up form -->
+      <form name="registerForm" ng-class="{submitted:registerForm.$submitted}" method="post" ng-submit="submit()" novalidate>
+
+        <!-- Username -->
+        <div class="form-group">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username" ng-model="account.username" autofocus required>
+          
+          <!-- Username is required -->
+          <div class="form-error" ng-show="(registerForm.$submitted || registerForm.username.$dirty) && registerForm.username.$invalid">
+            <span ng-show="registerForm.username.$error.required">Username is required</span>
+          </div>
+        </div>
+
+        <!-- Submit button -->
+        <div class="submit-input">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+
+        <!-- Submit feedback -->
+        <div class="form-error" ng-show="error">
+          <span>Username already exists</span>
+        </div>
+      </form>
+
+     <!-- Login page -->
+      <div class="alternative">
+        <p>Already have an account? <a href="/login">Log in</a></p>
       </div>
 
-      <!-- Submit button -->
-      <div class="submit-input">
-        <input type="submit" value="Create account">
-      </div>
-
-      <!-- Submit feedback -->
-      <div class="form-error" ng-show="error">
-        <span>Username already exists</span>
-      </div>
-    </form>
+    </div>
+    <!-- ./form-container -->
   </div>
-
- <!-- Login page -->
-  <div class="alternative">
-    <p>Already have an account? <a href="/login">Log in</a></p>
-  </div>
+  <!-- ./row -->
 </div>
+<!-- ./container -->

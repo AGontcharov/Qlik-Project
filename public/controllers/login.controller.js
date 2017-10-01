@@ -4,10 +4,11 @@ angular
 
 	$scope.submit = function() {
 		console.log($scope.credentials);
-		$scope.credentials.role = 'GUEST';
 
 		if ($scope.loginForm.$invalid) return;
 
+		$scope.credentials.role = 'GUEST';
+		
 		userService.authenticate($scope.credentials).then(function(response) {
 			authentication.createSession($scope.credentials);
 			$location.path('/home');

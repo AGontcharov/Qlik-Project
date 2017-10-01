@@ -17,16 +17,50 @@
 
   <body>
 
-    <!-- <div class="header"><h1>Qlik Audition RESTful Messaging Service</h1></div> -->
+    <!-- Wrapper to push footer -->
+    <div class="wrap">
 
-    <!-- Render template associated with the current route -->
-    <div ng-view></div>
+      <!-- Render template associated with the current route -->
+      <div class="main" ng-view></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+
+          <!-- Architecture -->
+          <div class="col-xs-12 col-md-6 architecture">
+            <h3>Architecture</h3>
+              <ul>
+                <li>MySQL 5.5.46</li>
+                <li>Express 4.15.3</li>
+                <li>Angular 1.6.5</li>
+                <li>Node 5.4.1</li>
+              </ul>
+          </div>
+
+          <!-- Source code -->
+          <div class="col-xs-12 col-md-6 source">
+            <h3>Source</h3>
+            <ul>
+              <li><a href="#">Qlik Audition Project</a></li>
+              <li>By Alexander Gontcharov</li>
+            </ul>
+          </div>
+
+        </div>
+        <!-- ./row -->
+      </div>
+      <!-- ./container -->
+    </footer>
+    <!-- ./footer -->
 
     <!-- Angular -->
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-cookies.js"></script>
-   <script src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-cookies.js"></script>
+    <script src="app.js"></script>
 
     <!-- Bootstrap4 -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

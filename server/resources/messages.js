@@ -18,7 +18,7 @@ module.exports = {
 
   getMessages: function(req, res, next) {
 
-    db.query("SELECT * FROM Messages INNER JOIN Users on Messages.ID = Users.ID", function(err, rows, fields) {
+    db.query("SELECT * FROM Messages INNER JOIN Users on Messages.ID = Users.ID ORDER BY MessageID", function(err, rows, fields) {
       
       // HTTP 500 Internal
       if (err) throw err;

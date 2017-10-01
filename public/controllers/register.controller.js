@@ -4,9 +4,10 @@ angular
 
 	$scope.submit = function() {
 		console.log($scope.account);
-		$scope.account.role = 'GUEST';
 
 		if ($scope.registerForm.$invalid) return;
+
+		$scope.account.role = 'GUEST';
 
 		userService.createUser($scope.account).then(function(response) {
 			authentication.createSession($scope.account);

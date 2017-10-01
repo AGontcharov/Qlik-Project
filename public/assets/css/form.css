@@ -1,47 +1,62 @@
+/* Header */
+.header {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-bottom: solid #d8dee2 1px;
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+.header h2 {
+    font-size: 16px;
+    color: white;
+    margin: 0;
+}
+
+
+/* Forms */
 .form-container {
-	position: fixed;
-  	top: 35%;
-  	left: 50%;
-	transform: translate(-50%, -50%);
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.form-container h1 {
-	white-space: nowrap;
-}
-
-div.form, .alternative {
-	width: 450px;
-	background: #f2f2f2;
-	border: solid black 1px;
-	text-align: center;
-	padding: 20px 0px;
-
-	display: block;
-	margin: 0 auto;
-}
-
-.submit-input {
-	padding-top: 10px;
+.form-container form {
+    width: 100%;
+    background: white;
+    padding: 20px 50px;
+    border: #d8dee2 1px solid;
 }
 
 
-/* 
- * Alternative link
- */
+/* Alternate pages */
 .alternative {
-	margin-top: 15px;
+    width: 100%;
+    background: white;
+    padding: 15px;
+    border: #d8dee2 1px solid;
+    text-align: center;
 }
 
-.alternative p, .alternative a {
-	font-size: 14px;
-	margin: 0;
+.alternative p {
+    margin: 0;
 }
 
 
-/* 
- * Form validation
- */
+/* Form validation */
  .form-error {
- 	padding-top: 3px;
- 	color: #ff3333;
+    padding-top: 5px;
+    color: #ff3333;
+    font-size: 14px;
  }
+
+form.submitted .ng-invalid
+{
+    border-color: red;
+}
