@@ -15,7 +15,7 @@
             <input type="text" class="form-control" aria-describedby="subjectHelp" placeholder="Enter subject" ng-model="message.subject" autofocus required>
           </div>
           <textarea class="form-control" rows="5" placeholder="Message..." ng-model="message.content" required></textarea>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
       </div>
     </div>
@@ -23,12 +23,14 @@
 
     <!-- Inbox/Newsfeed -->
     <div class="col-lg-6 col-xs-12">
-      <div class="inbox">
+      <div class="inbox pb-4">
         <h3>Newsfeed</h3>
 
         <!-- Message -->
         <div class="list-group" ng-show="newsfeed">
           <a href="#" ng-click="selectedMessage(message)" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="message in messages">
+            
+            <!-- User and date -->
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">{{message.Username}}</h5>
               <small>{{message.Date | date: "EEE h:m a" }}</small>

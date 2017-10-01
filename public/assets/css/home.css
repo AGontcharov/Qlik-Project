@@ -10,20 +10,24 @@
 	padding-top: 20px;
 }
 
-.inbox {
-	padding-bottom: 20px;
+
+/* Newsfeed */
+.list-group h5 {
+	color: #3a4045;
 }
 
-.compose button {
-	margin-top: 8px;
+.list-group small {
+	font-size: 15px;
+	line-height: 21px;
+}
+
+.palindrome {
+	font-size: 14px;
+	color: orange;
+	display: block;
 }
 
 .message-actions {
 	text-align: center;
 	padding-top: 8px;
-}
-
-.palindrome {
-	color: orange;
-	display: block;
 }

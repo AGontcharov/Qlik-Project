@@ -1,4 +1,3 @@
-/* Header */
 .header {
     width: 100%;
     background: #007bff;
@@ -12,26 +11,22 @@
     font-size: 24px;
 }
 
-.header h2 {
-    font-size: 16px;
-    color: white;
-    margin: 0;
+/* 260px offset row height for the forms with all errors */
+.offset-height {
+    height: calc(100% - 260px) 
 }
-
 
 /* Forms */
-.form-container {
-    position: fixed;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+form.form, .alternative {
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-.form-container form {
+form.form {
     width: 100%;
     background: white;
     padding: 20px 50px;
-    border: #d8dee2 1px solid;
+    border: #d8dee2 2px solid;
 }
 
 

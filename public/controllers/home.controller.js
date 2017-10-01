@@ -24,10 +24,8 @@ angular
 	}
 
 	$scope.deleteMessage = function(id) {
-		console.log('Message id: ', id);
 
 		messageService.deleteMessageByID(id).then(function(response) {
-			console.log('messageDeleted');
 			initialize();
 		})
 		.catch(function(error) {

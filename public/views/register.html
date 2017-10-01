@@ -2,12 +2,11 @@
 <div class="header"><h1>Qlik Audition Project</h1></div>
 
 <div class="container">
-  <div class="row">
-
-    <div class="form-container">
+  <div class="row offset-height">
+    <div class="col-sm-12 my-auto">
 
       <!-- Register/Sign Up form -->
-      <form name="registerForm" ng-class="{submitted:registerForm.$submitted}" method="post" ng-submit="submit()" novalidate>
+      <form class="form mb-3" name="registerForm" ng-class="{submitted:registerForm.$submitted}" method="post" ng-submit="submit()" novalidate>
 
         <!-- Username -->
         <div class="form-group">
@@ -30,14 +29,14 @@
         </div>
       </form>
 
-     <!-- Login page -->
+      <!-- Login page -->
       <div class="alternative">
         <p>Already have an account? <a href="/login">Log in</a></p>
       </div>
 
     </div>
-    <!-- ./form-container -->
+    <!-- ./col -->
   </div>
   <!-- ./row -->
 </div>
-<!-- ./container -->
+<!-- ./container
