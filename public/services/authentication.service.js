@@ -1,6 +1,8 @@
 angular
-	.module('qlik')
-	.factory('authentication', ['$cookies', '$location', 'session', function($cookies, $location, session) {
+	.module('app.auth')
+	.factory('authentication', ['$cookies', '$location', 'session', authentication]);
+
+function authentication($cookies, $location, session) {
 
 	var authentication = {};
 
@@ -9,18 +11,18 @@ angular
 		// Initialize cookie
 		var cookie = {
 			username: user.username,
-			role: user.role
+			role: 'GUEST'
 		};
 
 		// Create user session
 		$cookies.put('user', JSON.stringify(cookie));
 		session.create(cookie.username, cookie.role);
+		$location.path('/home');
 	}
 
 	authentication.refreshSession = function() {
 		if ($cookies.get('user')) {
 			var cookie = JSON.parse($cookies.get('user'));
-			console.log('cookie:', cookie);
 			session.create(cookie.username, cookie.role);
 		}
 		console.log(session);
@@ -37,4 +39,4 @@ angular
 	};
 
 	return authentication;
-}]);
+}

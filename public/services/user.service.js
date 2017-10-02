@@ -1,6 +1,8 @@
 angular
 	.module('qlik')
-	.factory('userService', ['$http', '$q', function($http, $q) {
+	.factory('userService', ['$http', '$q', userService]); 
+
+function userService($http, $q) {
 
 	var userService = {};
 	var BASE_URL = '/api';
@@ -29,4 +31,4 @@ angular
 	}
 
 	return userService;
-}])
+}

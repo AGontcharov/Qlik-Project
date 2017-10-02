@@ -1,4 +1,4 @@
-describe('Register Controller', function() {
+describe('Login Controller', function() {
 
 	// Mock the services of auth module
 	// beforeEach(function() {
@@ -18,10 +18,10 @@ describe('Register Controller', function() {
 		authentication = _authentication_;
 		
 		// Spies
-		spyOn(userService, 'createUser').and.returnValue(deferred.promise);
+		spyOn(userService, 'authenticate').and.returnValue(deferred.promise);
 		spyOn(authentication, 'createSession');
 
-		controller = $controller('register', {
+		controller = $controller('login', {
 			$scope: scope
 		});
 	}));
@@ -29,21 +29,21 @@ describe('Register Controller', function() {
 	describe('submit', function() {
 
 		it('Should not submit on invalid form', function() {
-			scope.registerForm = { $invalid: true };
+			scope.loginForm = { $invalid: true };
 			scope.submit();
-			expect(userService.createUser).not.toHaveBeenCalled();
+			expect(userService.authenticate).not.toHaveBeenCalled();
 		});
 
-		// Set register form invalid
+		// Set login form invalid
 		beforeEach(function() {
-			scope.registerForm = { $invalid: false };			
+			scope.loginForm = { $invalid: false };			
 		});
 
 		it ('Should call the user service', function() {
 			scope.submit();
 
 			// Resolve mock promise
-			deferred.resolve('User created');
+			deferred.resolve('Authenticated');
 			scope.$apply();
 
 			// authentication
@@ -55,12 +55,12 @@ describe('Register Controller', function() {
 			scope.submit();
 
 			// Resolve mock promise
-			deferred.resolve('User created');
+			deferred.resolve('Authenticated');
 			scope.$apply();
 
 			// userService
-			expect(userService.createUser).toHaveBeenCalled();
-			expect(userService.createUser.calls.count()).toBe(1);
+			expect(userService.authenticate).toHaveBeenCalled();
+			expect(userService.authenticate.calls.count()).toBe(1);
 		});
 
 		it('Should reject promise', function() {

@@ -1,6 +1,8 @@
 angular
-	.module('qlik')
-	.service('session', function() {
+	.module('app.auth')
+	.service('session', session);
+
+function session() {
 
 	this.create = function(user, role) {
 		this.user = user;
@@ -13,4 +15,4 @@ angular
 	}
 
 	return this;
-});
+}
