@@ -1,12 +1,5 @@
 describe('Login Controller', function() {
 
-	// Mock the services of auth module
-	// beforeEach(function() {
-	// 	module('auth', function($provide) {
-	// 		$provide.value('redirect', serviceMock);
-	// 	});
-	// });
-
 	beforeEach(module('qlik'));
 
 	var scope, controller, deferred, userService, authentication;

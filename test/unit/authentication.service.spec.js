@@ -2,48 +2,53 @@ describe('Authentication Service', function() {
 
 	beforeEach(module('app.auth'));
 
-	var authentication, $rootScope, $cookies, $location, session;
+	var $rootScope, $cookies, $location, session, authentication;
 
-	beforeEach(inject(function(_authentication_, _$rootScope_, _$cookies_, _$location_, _session_) {
-		authentication = _authentication_;
+	beforeEach(inject(function(_$rootScope_, _$cookies_, _$location_, _session_, _authentication_) {
 		$rootScope = _$rootScope_;
-		$cookies = _$cookies_;
+		$cookies = _$cookies_;  
 		$location = _$location_;
+		authentication = _authentication_;
 		session = _session_;
+
+		// Spies
+		spyOn($location, 'path').and.callThrough();
+		spyOn($cookies, 'put');
+		spyOn($cookies, 'get');
+		spyOn($cookies, 'remove');
+		spyOn(session, 'create');
+		spyOn(session, 'destroy');
 	}));
 
 	describe('Create session', function() {
 
 		var user;
 
+		// Define user
 		beforeEach(function() {
 			user = { username: 'Qlik' };			
 		});
 
-		it ('Should store a cookie', function() {
-			spyOn($cookies, 'put');
+		it('Should call the $cookies service', function() {
 			authentication.createSession(user);
 
-			// cookies
+			// $cookies
 			expect($cookies.put).toHaveBeenCalled();
 			expect($cookies.put.calls.count()).toBe(1);
 		});
-		
-		it ('Should create a session', function() {
-			spyOn(session, 'create');
+
+		it('Should call the session service', function() {
 			authentication.createSession(user);
 
 			// session
 			expect(session.create).toHaveBeenCalled();
 			expect(session.create.calls.count()).toBe(1);
-
-			// authentication.logout();
 		});
 
-		it ('Should redirect the user to the home page', function() {
-			spyOn($location, 'path').and.callThrough();
+		it('Should redirect the user to the home page', function() {
 			authentication.createSession(user);
 
+			// $location
 			expect($location.path).toHaveBeenCalled();
 			expect($location.path.calls.count()).toBe(1);
 			expect($location.path()).toBe('/home');
@@ -52,94 +57,70 @@ describe('Authentication Service', function() {
 
 	describe('Refresh session', function() {
 
-		beforeEach(function() {
-			spyOn($cookies, 'get').and.callThrough();
-			spyOn(session, 'create').and.callThrough();
-		});
-
-		it('Should not refresh session if cookie is not found', function() {
-			var cookie;			
+		it('Should call the $cookies service', function() {
 			authentication.refreshSession();
 
-			expect(cookie).toBeUndefined;
-			expect(session.create).not.toHaveBeenCalled();
-			expect(session.create.calls.count()).toBe(0);
-		});
-
-		it('Should refresh session if cookie is found', function() {
-			
-			// Create custom cookie
-			var mockCookie = {
-				username: 'test',
-				role: 'GUEST',
-			};
-
-			$cookies.put('user', JSON.stringify(mockCookie));
-			authentication.refreshSession();
-
-			// $cookie
+			// $cookies
 			expect($cookies.get).toHaveBeenCalled();
-			expect($cookies.get.calls.count()).toBe(2);
+			expect($cookies.get.calls.count()).toBe(1);
+		});
+
+		it('Should call the session service on stored cookie', function() {
+
+			// Mock $cookies getter to return a JSON object
+			$cookies.get = jasmine.createSpy().and.returnValue('{"username": "Qlik", "role": "GUEST"}');
+			authentication.refreshSession();
 
 			// session
 			expect(session.create).toHaveBeenCalled();
 			expect(session.create.calls.count()).toBe(1);
 		});
+
+		it('Should not call the session service if no cookie is stored', function() {
+			authentication.refreshSession();
+
+			// session
+			expect(session.create).not.toHaveBeenCalled();
+			expect(session.create.calls.count()).toBe(0);
+		});
+
 	});
 
 	describe('Is authenticated', function() {
-		
-		it('Should return false if session is not active', function() {
-			session.user = '';
-			authentication.isAuthenticated();
-			expect(session.user).toBeFalsy();
+
+		it('Should return true if session is defined', function() {
+			session.user = 'Qlik';
+			expect(authentication.isAuthenticated()).toBeTruthy();
 		});
 
-		it('Should return true if session is active', function() {
-			session.user = 'Qlik';
-			authentication.isAuthenticated();
-			expect(session.user).toBeTruthy();
+		it('Should return false if session is undefined', function() {
+			session.user = '';
+			expect(authentication.isAuthenticated()).toBeFalsy();;
 		});
 	});
 
 	describe('Logout', function() {
-		
-		it('Should destroy active session', function() {
-			session.user = 'Qlik';
-			session.role = 'GUEST';
 
-			// Assert session is defined
-			expect(session.user).toBe('Qlik');
-			expect(session.role).toBe('GUEST');
-
-			// Assert session is destroyed
+		it('Should call the session service', function() {
 			authentication.logout();
-			expect(session.user).toBeFalsy();
-			expect(session.role).toBeFalsy();
+
+			// session
+			expect(session.destroy).toHaveBeenCalled();
+			expect(session.destroy.calls.count()).toBe(1);
 		});
 
-		it('Should remove active cookie', function() {
-			
-			// Create custom cookie
-			var cookie = {
-				username: 'test',
-				role: 'GUEST',
-			};
-
-			// Assert cookie is defined
-			$cookies.put('user', JSON.stringify(cookie));
-			expect($cookies.get('user')).toBeTruthy();
-			expect(JSON.parse($cookies.get('user'))).toEqual(cookie);
-
-			// Assert cookie is removed
+		it('Should call the $cookies service', function() {
 			authentication.logout();
-			expect($cookies.get('user')).toBeFalsy();
+
+			// $cookies
+			expect($cookies.remove).toHaveBeenCalled();
+			expect($cookies.remove.calls.count()).toBe(1);
 		});
 
-		it('Should redirect the user to the logout page', function() {
-			spyOn($location, 'path').and.callThrough();
+		it('Should redirect the user to the login page', function() {
 			authentication.logout();
 
+			// $location
 			expect($location.path).toHaveBeenCalled();
 			expect($location.path.calls.count()).toBe(1);
 			expect($location.path()).toBe('/login');

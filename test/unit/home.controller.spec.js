@@ -1,12 +1,5 @@
 describe('Home Controller', function() {
 
-	// Mock the services of auth module
-	// beforeEach(function() {
-	// 	module('auth', function($provide) {
-	// 		$provide.value('redirect', serviceMock);
-	// 	});
-	// });
-
 	beforeEach(module('qlik'));
 
 	var scope, controller, deferred, session, messageService;
@@ -104,7 +97,7 @@ describe('Home Controller', function() {
 		});
 	});
 
-	describe('isPalindrome', function() {
+	describe('is palindrome', function() {
 
 		var message;
 

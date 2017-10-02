@@ -1,4 +1,4 @@
-describe('Session service', function() {
+describe('Session Service', function() {
 
 	beforeEach(module('app.auth'));
 
@@ -10,7 +10,6 @@ describe('Session service', function() {
 		// Spies
 		spyOn(session, 'create').and.callThrough();
 		spyOn(session, 'destroy').and.callThrough();
-
 	}));
 
 	it ('Should invoke the create method', function() {
