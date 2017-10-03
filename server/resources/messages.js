@@ -5,8 +5,8 @@ module.exports = {
   postMessage: function(req, res, next) {
 
     // HTTP 400 Bad Request
-    if(!req.body.subject) return res.status(400).send('Mising subject');
-    if(!req.body.content) return res.status(400).send('Missing content');
+    if (!req.body.subject) return res.status(400).send('Mising subject');
+    if (!req.body.content) return res.status(400).send('Missing content');
                
     var args = [res.locals.userID, req.body.subject, req.body.content];
     db.query("INSERT INTO Messages (ID, Subject, Content) VALUES (?, ?, ?)", args, function(err, rows, fields) {

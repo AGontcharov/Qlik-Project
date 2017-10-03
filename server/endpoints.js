@@ -14,7 +14,7 @@ apiRouter.use(function(req, res, next) {
 
 // Base API should return all the endpoints
 apiRouter.get('/', function(req, res, next) {
-  res.status(200).send('API base');
+  res.status(200).send({ version: '1.0', documentation: '' });
 });
 
 // Users endpoints
@@ -25,7 +25,6 @@ apiRouter.post('/users/login', users.authenticateUser);
 // Messages endpoints
 apiRouter.post('/messages', users.getUserID, messages.postMessage);
 apiRouter.get('/messages', messages.getMessages);
-// apiRouter.get('/messages/users/:username', users.getUserID, messages.getMessages);
 apiRouter.get('/messages/:messageID(\\d+)', messages.getMessageByID);
 apiRouter.delete('/messages/:messageID(\\d+)', messages.deleteMessageByID);
 apiRouter.get('/messages/:messageID(\\d+)/palindrome', messages.getMessageByID, messages.isPalindrome);

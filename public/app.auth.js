@@ -7,10 +7,10 @@ function run($rootScope, $location, authentication) {
     $rootScope.$on('$routeChangeStart', function(event, next, current) {
         authentication.refreshSession();
 
+        // Allow navigation to register and login page without being authenticated
         if ($location.path() !== '/' && $location.path() !== '/login') {
             
             if (!authentication.isAuthenticated()) {
-                console.log('DENY : Redirecting to login page');
                 event.preventDefault();
                 $location.path('/login');
             }
