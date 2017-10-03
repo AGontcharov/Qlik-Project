@@ -14,6 +14,10 @@ describe('User Service', function() {
             .respond(201, { foo: 'Created' });
 
         $httpBackend
+            .when('POST', '/api/users', { username: '' })
+            .respond(400, { foo: 'Bad Request' });
+
+        $httpBackend
             .when('POST', '/api/users', { username: 'Sergey' })
             .respond(409, { foo: 'Conflict' });
 
@@ -62,6 +66,19 @@ describe('User Service', function() {
 
                 // Assert
                 expect(error.status).toBe(409);
+                expect(error.message).toBe('Error creating user');
+            });
+            $httpBackend.flush();
+        });
+
+        it('Should return missing username (HTTP 400)', function() {
+
+            // Fetch promise
+            userService.createUser({ username: '' }).then(function(response) {})
+            .catch(function(error) {
+
+                // Assert
+                expect(error.status).toBe(400);
                 expect(error.message).toBe('Error creating user');
             });
             $httpBackend.flush();

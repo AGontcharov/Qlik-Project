@@ -3,6 +3,10 @@ var db = require('../database.js')
 module.exports = {
 
   postMessage: function(req, res, next) {
+
+    // HTTP 400 Bad Request
+    if(!req.body.subject) return res.status(400).send('Mising subject');
+    if(!req.body.content) return res.status(400).send('Missing content');
                
     var args = [res.locals.userID, req.body.subject, req.body.content];
     db.query("INSERT INTO Messages (ID, Subject, Content) VALUES (?, ?, ?)", args, function(err, rows, fields) {
@@ -44,13 +48,13 @@ module.exports = {
       if (!rows.length) return res.status(404).send('Message not found');
 
       // Check if palindrome action has been called on the message
-      if (req.route.path === '/messages/:messageID/palindrome') {
+      if (req.route.path === '/messages/:messageID(\\d+)/palindrome') {
         res.locals.palindrome = rows[0].Content;
         next();
       }
 
       // HTTP 200 Ok
-      else return res.status(200).send(rows);
+      else return res.status(200).send(rows[0]);
     });
   },
 
@@ -63,8 +67,6 @@ module.exports = {
       // HTTP 500 Internal
       if (err) throw err;
       // if (err) return res.status(500).send('Server error');
-
-      console.log('len', rows.length);
 
       // HTTP 204 Deleted
       return res.status(204).send('Message delete');

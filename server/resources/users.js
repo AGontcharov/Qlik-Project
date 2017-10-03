@@ -4,6 +4,9 @@ module.exports = {
   
   createUser: function(req, res, next) {
 
+    // HTTP 400 Bad Request
+    if (!req.body.username) return res.status(400).send('Missing username');
+
     // Check if user exists already
     db.query("SELECT * FROM Users WHERE Username=? LIMIT 1", req.body.username, function(err, rows, fields) {
       
@@ -45,7 +48,6 @@ module.exports = {
   },
 
   getUsers: function(req, res, next) {
-
     db.query("SELECT Username FROM Users", function(err, rows, fields) {
       
       // HTTP 500 Internal
@@ -61,6 +63,9 @@ module.exports = {
   },
 
   getUserID: function(req, res, next) {
+    
+    // HTTP 400 Bad Request
+    if (!req.body.username) return res.status(400).send('Missing username');
 
     var username = req.body.username ? req.body.username : req.params.username;
     db.query("SELECT ID FROM Users WHERE Username=? LIMIT 1", username, function(err, rows, fields) {
@@ -74,7 +79,6 @@ module.exports = {
 
       // Store User ID and move to the next matching route handler
       res.locals.userID = rows[0].ID;
-      console.log(res.locals.userID);
       next();
     });
   }

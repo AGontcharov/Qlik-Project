@@ -10,8 +10,20 @@ describe('Message Service', function() {
 
         // POST api/messages
         $httpBackend
-            .when('POST', '/api/messages', { subject: 'Unit Testing', content: 'With $httpBackend' })
+            .when('POST', '/api/messages', { username: 'Jack', subject: 'Unit Testing', content: 'With $httpBackend' })
             .respond(201, { foo: 'Created' });
+
+        $httpBackend
+            .when('POST', '/api/messages', { username: '', subject: 'Unit Testing', content: 'With $httpBackend' })
+            .respond(201, { foo: 'Created' });
+
+        $httpBackend
+            .when('POST', '/api/messages', { username: 'Jack', subject: '', content: 'With $httpBackend' })
+            .respond(400, { foo: 'Created' });
+
+        $httpBackend
+            .when('POST', '/api/messages', { username: 'Jack', subject: 'Unit Testing', content: '' })
+            .respond(400, { foo: 'Created' });
 
 
         // GET api/messages
@@ -56,13 +68,52 @@ describe('Message Service', function() {
         it('Should create a message (HTTP 201)', function() {
 
             // Fetch promise
-            messageService.createMessage({ subject: 'Unit Testing', content: 'With $httpBackend' }).then(function(response) {
+            messageService.createMessage({ username: 'Jack', subject: 'Unit Testing', content: 'With $httpBackend' }).then(function(response) {
 
                 // Assert
                 expect(response.status).toBe(201);
                 expect(response.data.foo).toBe('Created');
             })
             .catch(function(error) {});
+            $httpBackend.flush();
+        });
+
+        it('Should return missing username (HTTP 400)', function() {
+
+            // Fetch promise
+            messageService.createMessage({ username: '', subject: 'Unit Testing', content: 'With $httpBackend' }).then(function(response) {})
+            .catch(function(error) {
+
+                // Assert
+                expect(error.status).toBe(400);
+                expect(error.message).toBe('Error posting message');
+            });
+            $httpBackend.flush();
+        });
+
+        it('Should return missing subject (HTTP 400)', function() {
+
+            // Fetch promise
+            messageService.createMessage({ username: 'Jack', subject: '', content: 'With $httpBackend' }).then(function(response) {})
+            .catch(function(error) {
+
+                // Assert
+                expect(error.status).toBe(400);
+                expect(error.message).toBe('Error posting message');
+            });
+            $httpBackend.flush();
+        });
+
+        it('Should return missing content (HTTP 400)', function() {
+
+            // Fetch promise
+            messageService.createMessage({ username: 'Jack', subject: 'Unit Testing', content: '' }).then(function(response) {})
+            .catch(function(error) {
+
+                // Assert
+                expect(error.status).toBe(400);
+                expect(error.message).toBe('Error posting message');
+            });
             $httpBackend.flush();
         });
     });
