@@ -20,7 +20,7 @@ module.exports = function(config) {
       "node_modules/angular-route/angular-route.js",
       "node_modules/angular-cookies/angular-cookies.js",
       "public/**/*.js",
-      "test/**/*spec.js"
+      "test/unit/*spec.js"
     ],
 
 
