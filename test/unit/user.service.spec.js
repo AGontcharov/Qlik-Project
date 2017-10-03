@@ -45,6 +45,8 @@ describe('User Service', function() {
 
             // Fetch promise
             userService.createUser({ username: 'Corey' }).then(function(response) {
+
+                // Assert
                 expect(response.status).toBe(201);
                 expect(response.data.foo).toBe('Created');
             })
