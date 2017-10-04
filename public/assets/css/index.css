@@ -28,12 +28,12 @@ h1, h2, h3 {
 /* Footer */
 .main {
     overflow: auto;
-    padding-bottom: 190px; /* this needs to be bigger than footer height */
+    padding-bottom: 190px; /* This needs to be bigger than footer height */
 }
 
 .footer {
     position: relative;
-    margin-top: -190px; /* negative value of footer height */
+    margin-top: -190px; /* Negative value of footer height */
     height: 190px;
     clear: both;
     padding-top: 20px;

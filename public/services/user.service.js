@@ -28,11 +28,21 @@ function userService($http, $q) {
 	}
 
 
-	// Private functions
+	/**
+     * Private function for handling request success
+     * @param {Object} response - The response object
+     * @return {Object} response - The response object
+     */
 	function successHandle(response) {
 		return response;
 	}
 
+	/**
+     * Private function for handling request error
+     * @param {Object} response - The response object
+     * @error {String} error - The error message
+     * @return {Object} response - The response object
+     */
 	function errorHandle(response, error) {
 		return $q.reject({ status: response.status, message: error });
 	}

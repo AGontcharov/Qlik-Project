@@ -4,8 +4,12 @@ angular
 
 function home($scope, session, messageService) {
 
+	// Initialize the controller
 	activate();
 
+	/**
+	 * Submits the message form
+	 */
 	$scope.submit = function() {
 		$scope.message.username = session.user;
 
@@ -21,10 +25,18 @@ function home($scope, session, messageService) {
 		});
 	}
 
+	/**
+	 * Toggles between viewing messages
+	 * @param {Object} message - The message instance
+	 */
 	$scope.selectedMessage = function(message) {
 		message.selected ? message.selected = false : message.selected = true;
 	}
 
+	/**
+	 * Deletes the selected message
+	 * @param {Number} id - The Message ID
+	 */
 	$scope.deleteMessage = function(id) {
 
 		messageService.deleteMessageByID(id).then(function(response) {
@@ -35,6 +47,10 @@ function home($scope, session, messageService) {
 		});
 	}
 
+	/**
+	 * Checks if the selected message content is a palidrome
+	 * @param {Object} message - The Message instance
+	 */
 	$scope.isPalindrome = function(message) {
 		
 		// Prevent message contents from closing
@@ -47,9 +63,10 @@ function home($scope, session, messageService) {
 			console.log(error);
 		});
 	}
-
 	
-	// Private function
+	/**
+	 * Private function used to initializes the controller after every request
+	 */
 	function activate() {
 		messageService.getMessages().then(function(response) {
 			$scope.newsfeed = true;

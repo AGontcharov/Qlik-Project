@@ -13,6 +13,10 @@ function authentication($cookies, $location, session) {
 
 	return service;
 
+	/**
+     * Creates the user session and cookie
+     * @param {Object} user - The user credentials
+     */
 	function createSession(user) {
 
 		// Initialize cookie
@@ -27,18 +31,30 @@ function authentication($cookies, $location, session) {
 		$location.path('/home');
 	}
 
+	/**
+     * Refreshes the user session on route changes
+     */
 	function refreshSession() {
+
+		// Get user cookie
 		if ($cookies.get('user')) {
 			var cookie = JSON.parse($cookies.get('user'));
+
+			// Create new session
 			session.create(cookie.username, cookie.role);
 		}
-		console.log(session);
 	}
 
+	/**
+     * Checks if the user is authenticated
+     */
 	function isAuthenticated() {
 		return !!session.user;
 	};
 
+	/**
+     * Logs the user out and destroys the user session and cookie
+     */
 	function logout() {
 		session.destroy();
 		$cookies.remove('user');

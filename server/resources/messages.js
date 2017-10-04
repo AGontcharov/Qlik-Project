@@ -4,18 +4,20 @@ module.exports = {
 
   /**
    * Creates a message resource
-   * @params {string} body.subject - Message subject
-   * @params {string} body.content - Message content
-   * @params {number} locals.userID - The User ID
+   * @params {String} body.subject - Message subject
+   * @params {String} body.content - Message content
+   * @params {Number} locals.userID - The User ID
+   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
-   * @params {function} next - The callback for the next matching middleware
+   * @params {Object} next - The callback for the next matching middleware
+   *
    * @returns {HTTP 500 on server error, HTTP 400 on bad request, HTTP 201 on success}
    */
   postMessage: function(req, res, next) {
 
     // HTTP 400 Bad Request
-    if (!req.body.subject) return res.status(400).send('Mising subject');
+    if (!req.body.subject) return res.status(400).send('Missing subject');
     if (!req.body.content) return res.status(400).send('Missing content');
                
     var args = [res.locals.userID, req.body.subject, req.body.content];
@@ -31,10 +33,12 @@ module.exports = {
 
   /**
    * Retrives a list of messages ordered by time
+   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
-   * @params {function} next - The callback for the next matching middleware
-   * @returns {HTTP 500 on server error, HTTP 404 on failure, HTTP 200 on success}
+   * @params {Object} next - The callback for the next matching middleware
+   *
+   * @returns {HTTP 500 on server error, HTTP 404 on failure, HTTP 200 {array} on success}
    */
   getMessages: function(req, res, next) {
 
@@ -53,11 +57,13 @@ module.exports = {
 
   /**
    * Retrives a messages associated with a message ID
-   * @params {number} params.messageID - The Message ID
+   * @params {Number} params.messageID - The Message ID
+   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
-   * @params {function} next - The callback for the next matching middleware
-   * @returns {HTTP 500 on server error, HTTP 404 on failure, HTTP 200 on success}
+   * @params {Object} next - The callback for the next matching middleware
+   *
+   * @returns {HTTP 500 on server error, HTTP 404 on failure, HTTP 200 {array} on success}
    */
   getMessageByID: function(req, res, next) {
 
@@ -82,10 +88,12 @@ module.exports = {
 
   /**
    * Deletes a messages associated with a message ID
-   * @params {number} params.messageID - The Message ID
+   * @params {Number} params.messageID - The Message ID
+   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
-   * @params {function} next - The callback for the next matching middleware
+   * @params {Object} next - The callback for the next matching middleware
+   *
    * @returns {HTTP 500 on server error, HTTP 204 on success}
    */
   deleteMessageByID: function(req, res, next) {
@@ -102,11 +110,13 @@ module.exports = {
 
   /**
    * A helper function used to check if a string is a palindrome
-   * @params {string} locals.palindrome - The string to check
+   * @params {String} locals.palindrome - The string to check
+   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
-   * @params {function} next - The callback for the next matching middleware
-   * @returns {HTTP 200 true if palindrome, HTTP 200 false otherwise}
+   * @params {Object} next - The callback for the next matching middleware
+   *
+   * @returns {HTTP 200 {true} if palindrome, HTTP 200 {false} otherwise}
    */
   isPalindrome: function(req, res, next) {
 

@@ -4,6 +4,9 @@ angular
 
 function login($scope, authentication, userService) {
 
+	/**
+	 * Submits the login form and authenticates user credentials
+	 */
 	$scope.submit = function() {
 
 		if ($scope.loginForm.$invalid) return;

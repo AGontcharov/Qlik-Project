@@ -4,11 +4,13 @@ module.exports = {
   
   /**
    * Creates a user resource
-   * @params {string} body.username - The username
+   * @params {String} body.username - The username
+   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
-   * @params {function} next - The callback for the next matching middleware
-   * @returns {HTTP 500 on server error, HTTP 409 on conflict, HTTP 201 on success}
+   * @params {Object} next - The callback for the next matching middleware
+   *
+   * @returns {HTTP 500 on server error, HTTP 400 on bad request, HTTP 409 on conflict, HTTP 201 on success}
    */
   createUser: function(req, res, next) {
 
@@ -40,13 +42,19 @@ module.exports = {
 
   /**
    * Authenticates a user credential
-   * @params {string} body.username - The username
+   * @params {String} body.username - The username
+   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
-   * @params {function} next - The callback for the next matching middleware
+   * @params {Object} next - The callback for the next matching middleware
+   *
    * @returns {HTTP 500 on server error, HTTP 200 on success}
    */
   authenticateUser: function(req, res, next) {
+
+    // HTTP 400 Bad Request
+    if (!req.body.username) return res.status(400).send('Missing username');
+
     db.query("SELECT * FROM Users WHERE Username=? LIMIT 1", req.body.username, function(err, rows, fields) {
 
       // HTTP 500 Internal
@@ -64,8 +72,9 @@ module.exports = {
    * Retrieves a list of user resources
    * @params {Object} req - the request object
    * @params {Object} res - the response object
-   * @params {function} next - The callback for the next matching middleware
-   * @returns {HTTP 500 on server error, HTTP 404 on failture, HTTP 200 on success}
+   * @params {Object} next - The callback for the next matching middleware
+   *
+   * @returns {HTTP 500 on server error, HTTP 404 on failture, HTTP 200 {array} on success}
    */
   getUsers: function(req, res, next) {
     db.query("SELECT Username FROM Users", function(err, rows, fields) {
@@ -83,10 +92,12 @@ module.exports = {
 
   /**
    * A helper function used to retrieve the user ID
-   * @params {string} body.username - The username
+   * @params {String} body.username - The username
+   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
-   * @params {function} next - The callback for the next matching middleware
+   * @params {Object} next - The callback for the next matching middleware
+   *
    * @returns {The user ID stored inside res.locals for the next middleware}
    */
   getUserID: function(req, res, next) {

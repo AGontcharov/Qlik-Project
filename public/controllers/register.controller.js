@@ -4,6 +4,9 @@ angular
 
 function register($scope, authentication, userService) {
 
+	/**
+	 * Submits the register form and authenticates user account
+	 */
 	$scope.submit = function() {
 
 		if ($scope.registerForm.$invalid) return;

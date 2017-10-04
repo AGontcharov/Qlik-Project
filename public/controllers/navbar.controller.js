@@ -4,6 +4,9 @@ angular
 
 function navbar($scope, authentication) {
 
+    /**
+     * Logs the user out
+     */
 	$scope.logout = function() {
 		authentication.logout();
 	}
