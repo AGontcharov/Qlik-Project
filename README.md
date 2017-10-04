@@ -50,12 +50,23 @@ Linux & OS X:
 ```sh
 npm start
 Open Chrome (or your favorite browser)
-Go to: localhost:3000
+Go to: localhost:7000
 ```
 
 ## REST API Documentation
 
+### GET api/
+
+__Return__
+```sh
+{
+  "version": "1.0",
+  "documentation": "https://github.com/AGontcharov/Qlik-Project"
+}
+```
+
 ### POST api/users
+
 __Parameters__
 ```sh
 {
@@ -113,6 +124,9 @@ __Return__
 
 ### GET api/messages/:messageID
 
+__Parameter__
+- messageID must be a positive number! Otherwise It won't match the route!
+
 __Return__
 - HTTP 200 A single array of the message
 - HTTP 404 ('Message not found')
@@ -120,11 +134,17 @@ __Return__
 
 ### GET api/messages/:messageID/palindrome
 
+__Parameter__
+- messageID must be a positive number! Otherwise It won't match the route!
+
 __Return__
 - HTTP 200 true
 - HTTP 200 false
 
 ### DELETE api/messages/:messageID
+
+__Parameter__
+- messageID must be a positive number! Otherwise It won't match the route!
 
 __Return__
 - HTTP 204 ('Message deleted')
@@ -133,9 +153,16 @@ __Return__
 ## Testing
 
 Linux & OS X:
+
+### Unit tests
 ```sh
 npm test
 ```
+
+### e2e test
+```sh
+npm run test-e2e
+````
 
 ## Meta
 
