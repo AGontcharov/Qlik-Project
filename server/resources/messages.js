@@ -2,6 +2,16 @@ var db = require('../database.js')
 
 module.exports = {
 
+  /**
+   * Creates a message resource
+   * @params {string} body.subject - Message subject
+   * @params {string} body.content - Message content
+   * @params {number} locals.userID - The User ID
+   * @params {Object} req - The request object
+   * @params {Object} res - The response object
+   * @params {function} next - The callback for the next matching middleware
+   * @returns {HTTP 500 on server error, HTTP 400 on bad request, HTTP 201 on success}
+   */
   postMessage: function(req, res, next) {
 
     // HTTP 400 Bad Request
@@ -19,6 +29,13 @@ module.exports = {
     });
   },
 
+  /**
+   * Retrives a list of messages ordered by time
+   * @params {Object} req - The request object
+   * @params {Object} res - The response object
+   * @params {function} next - The callback for the next matching middleware
+   * @returns {HTTP 500 on server error, HTTP 404 on failure, HTTP 200 on success}
+   */
   getMessages: function(req, res, next) {
 
     db.query("SELECT * FROM Messages INNER JOIN Users on Messages.ID = Users.ID ORDER BY MessageID", function(err, rows, fields) {
@@ -34,6 +51,14 @@ module.exports = {
     });
   },
 
+  /**
+   * Retrives a messages associated with a message ID
+   * @params {number} params.messageID - The Message ID
+   * @params {Object} req - The request object
+   * @params {Object} res - The response object
+   * @params {function} next - The callback for the next matching middleware
+   * @returns {HTTP 500 on server error, HTTP 404 on failure, HTTP 200 on success}
+   */
   getMessageByID: function(req, res, next) {
 
     db.query("SELECT MessageID, Subject, Content FROM Messages WHERE MessageID=?", req.params.messageID, function(err, rows, fields) {
@@ -55,6 +80,14 @@ module.exports = {
     });
   },
 
+  /**
+   * Deletes a messages associated with a message ID
+   * @params {number} params.messageID - The Message ID
+   * @params {Object} req - The request object
+   * @params {Object} res - The response object
+   * @params {function} next - The callback for the next matching middleware
+   * @returns {HTTP 500 on server error, HTTP 204 on success}
+   */
   deleteMessageByID: function(req, res, next) {
     
     db.query("DELETE From Messages WHERE MessageID=?", req.params.messageID, function(err, rows, fields) {
@@ -67,8 +100,15 @@ module.exports = {
     });
   },
 
+  /**
+   * A helper function used to check if a string is a palindrome
+   * @params {string} locals.palindrome - The string to check
+   * @params {Object} req - The request object
+   * @params {Object} res - The response object
+   * @params {function} next - The callback for the next matching middleware
+   * @returns {HTTP 200 true if palindrome, HTTP 200 false otherwise}
+   */
   isPalindrome: function(req, res, next) {
-    console.log('Validating palindrome: ', res.locals.palindrome);
 
     // Allow validating case insentive phrases
     var palindrome = res.locals.palindrome.toUpperCase().replace(/ /g,'');

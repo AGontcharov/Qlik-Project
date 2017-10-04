@@ -4,9 +4,16 @@ angular
 
 function authentication($cookies, $location, session) {
 
-	var authentication = {};
+	var service = {
+		createSession: createSession,
+		refreshSession: refreshSession,
+		isAuthenticated: isAuthenticated,
+		logout: logout
+	};
 
-	authentication.createSession = function(user) {
+	return service;
+
+	function createSession(user) {
 
 		// Initialize cookie
 		var cookie = {
@@ -20,7 +27,7 @@ function authentication($cookies, $location, session) {
 		$location.path('/home');
 	}
 
-	authentication.refreshSession = function() {
+	function refreshSession() {
 		if ($cookies.get('user')) {
 			var cookie = JSON.parse($cookies.get('user'));
 			session.create(cookie.username, cookie.role);
@@ -28,15 +35,13 @@ function authentication($cookies, $location, session) {
 		console.log(session);
 	}
 
-	authentication.isAuthenticated = function() {
+	function isAuthenticated() {
 		return !!session.user;
 	};
 
-	authentication.logout = function() {
+	function logout() {
 		session.destroy();
 		$cookies.remove('user');
 		$location.path('/login');
 	};
-
-	return authentication;
 }

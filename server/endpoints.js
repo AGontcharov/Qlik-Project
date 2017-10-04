@@ -12,7 +12,7 @@ apiRouter.use(function(req, res, next) {
   next();
 });
 
-// Base API should return all the endpoints
+// Base API should return information on the endpoints
 apiRouter.get('/', function(req, res, next) {
   res.status(200).send({ version: '1.0', documentation: 'https://github.com/AGontcharov/Qlik-Project' });
 });

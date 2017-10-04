@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "wb-update": "node_modules/protractor/bin/webdriver-manager update",
+    "wd-update": "node_modules/protractor/bin/webdriver-manager update",
     "wd-start": "node_modules/protractor/bin/webdriver-manager start",
     "test": "./node_modules/karma/bin/karma start karma.conf.js",
     "test-e2e": "./node_modules/protractor/bin/protractor protractor.conf.js"
