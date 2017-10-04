@@ -14,7 +14,7 @@ apiRouter.use(function(req, res, next) {
 
 // Base API should return all the endpoints
 apiRouter.get('/', function(req, res, next) {
-  res.status(200).send({ version: '1.0', documentation: '' });
+  res.status(200).send({ version: '1.0', documentation: 'https://github.com/AGontcharov/Qlik-Project' });
 });
 
 // Users endpoints
@@ -25,11 +25,13 @@ apiRouter.post('/users/login', users.authenticateUser);
 // Messages endpoints
 apiRouter.post('/messages', users.getUserID, messages.postMessage);
 apiRouter.get('/messages', messages.getMessages);
+
+// Match positive integers for these routes
 apiRouter.get('/messages/:messageID(\\d+)', messages.getMessageByID);
 apiRouter.delete('/messages/:messageID(\\d+)', messages.deleteMessageByID);
 apiRouter.get('/messages/:messageID(\\d+)/palindrome', messages.getMessageByID, messages.isPalindrome);
 
-// Default route for requests not matched above
+// Default response for requests not matched above
 apiRouter.use(function(req, res) {
     res.status(404).end('Resource not found');
 });

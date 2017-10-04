@@ -4,10 +4,17 @@
   "description": "A RESTful service takeaway assignment for Qlik",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "wb-update": "node_modules/protractor/bin/webdriver-manager update",
+    "wd-start": "node_modules/protractor/bin/webdriver-manager start",
     "test": "./node_modules/karma/bin/karma start karma.conf.js",
-    "start": "node server.js"
+    "test-e2e": "./node_modules/protractor/bin/protractor protractor.conf.js"
   },
   "author": "Alexander Gontcharov",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/AGontcharov/Qlik-Project.git"
+  },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -20,6 +27,7 @@
     "angular-mocks": "^1.6.5",
     "angular-route": "^1.6.5",
     "jasmine": "^2.8.0",
+    "jasmine-spec-reporter": "^4.2.1",
     "karma": "^1.7.1",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.4",

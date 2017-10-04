@@ -11,16 +11,14 @@ module.exports = {
     db.query("SELECT * FROM Users WHERE Username=? LIMIT 1", req.body.username, function(err, rows, fields) {
       
       // HTTP 500 Internal
-      // if (err) return res.status(500).send('Server error');
-      if (err) throw err;
+      if (err) return res.status(500).send('Server error');
 
       // User not created yet
       if (!rows.length) {
         db.query("INSERT INTO Users (Username) VALUES(?)", req.body.username, function(err, rows, fields) {
           
           //HTTP 500 Internal
-          // if (err) return res.status(500).send('Server error');
-          if (err) throw err;
+          if (err) return res.status(500).send('Server error');
 
           // HTTP 201 Created
           return res.status(201).send('User created');
@@ -36,8 +34,7 @@ module.exports = {
     db.query("SELECT * FROM Users WHERE Username=? LIMIT 1", req.body.username, function(err, rows, fields) {
 
       // HTTP 500 Internal
-      // if (err) return res.status(500).send('Server error');
-      if (err) throw err;
+      if (err) return res.status(500).send('Server error');
 
       // HTTP 404 Not Found
       if (!rows.length) return res.status(404).send('User does not exist');
@@ -51,8 +48,7 @@ module.exports = {
     db.query("SELECT Username FROM Users", function(err, rows, fields) {
       
       // HTTP 500 Internal
-      // if (err) return res.status(500).send('Server error');
-      if (err) throw err;
+      if (err) return res.status(500).send('Server error');
 
       // HTTP 404 Not Found
       if (!rows.length) return res.status(404).send('No users are registered in the system');
@@ -71,8 +67,7 @@ module.exports = {
     db.query("SELECT ID FROM Users WHERE Username=? LIMIT 1", username, function(err, rows, fields) {
       
       // HTTP 500 Internal
-      // if (err) return res.status(500).send('Server error');
-      if (err) throw err;
+      if (err) return res.status(500).send('Server error');
 
       // HTTP 404 Not Found
       if (!rows.length) return res.status(404).send('User not found');

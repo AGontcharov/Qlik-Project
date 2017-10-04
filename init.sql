@@ -6,7 +6,8 @@ DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users` (
  	`ID` int(11) NOT NULL AUTO_INCREMENT,
   	`Username` varchar(255) NOT NULL,
-  	PRIMARY KEY (`ID`)
+  	PRIMARY KEY (`ID`),
+    UNIQUE KEY `Username` (`Username`)
 );
 
 DROP TABLE IF EXISTS `Messages`;
