@@ -89,6 +89,7 @@ __parameters__
 ```
 __Return__
 - HTTP 201 ('Authenticated')
+- HTTP 400 ('Missing username')
 - HTTP 404 ('User does not exist')
 - HTTP 500 ('Server error')
 
@@ -104,8 +105,8 @@ __Parameters__
 ```sh
 {
   "username": "Qlik",
-  "Subject": "Example"
-  "Content": "This is the message body!"
+  "subject": "Example",
+  "content": "This is the message body!"
 }
 ```
 
@@ -160,7 +161,11 @@ npm test
 ```
 
 ### e2e test
+
+Chrome must be installed to run e2e tests
+
 ```sh
+npm run wd-start
 npm run test-e2e
 ````
 
