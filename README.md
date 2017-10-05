@@ -10,15 +10,19 @@ Publicly available at: [http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:
 - Angular 1.6.5
 - Node 8.6.0
 
-Block diagram coming soon...
+![alt-text](https://image.ibb.co/dTUSTw/Block_Diagram.png "Block Diagram")
 
 ## Deployment
 
 Unforunately due to linking problems between the application container and the MySQL container I was unable to deploy it using Docker! However to deploy this on **Ubuntu 14.04** (*feel free to try on your own system though*) follow the instructions below!
 
-Install the following prerequisites:
+Install the following **prerequisites**:
 - MySQL 5.5.57 (or higher)
 - Node 8.6.0 (latest)
+
+To run the **e2e test** you're also going to need:
+- Google-chrome 61.x (or higher)
+- Java SE Development Kit 8
 
 ## Installation
 
@@ -186,13 +190,15 @@ npm test
 
 ### e2e test
 
-Chrome must be installed to run e2e tests
-
 ```sh
 npm start
 npm run wd-start
 npm run test-e2e
-````
+```
+
+![alt-text](https://image.ibb.co/dY0O1G/e2e.jpg "e2e tests")
+
+*This is ran off my VM and not the remote server where it's deployed, as I've yet to figure that out*
 
 ## Meta
 
