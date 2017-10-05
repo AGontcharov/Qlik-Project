@@ -33,7 +33,6 @@ module.exports = {
 
   /**
    * Retrives a list of messages ordered by time
-   *
    * @params {Object} req - The request object
    * @params {Object} res - The response object
    * @params {Object} next - The callback for the next matching middleware

@@ -33,7 +33,7 @@ Next provide a **config.json** file in the root directory with the necessary cre
     "user": "",
     "password": "",
     "database": "Qlik"
-  },
+  }
 }
 ```
 
@@ -165,6 +165,7 @@ npm test
 Chrome must be installed to run e2e tests
 
 ```sh
+npm start
 npm run wd-start
 npm run test-e2e
 ````
