@@ -1,9 +1,11 @@
 # Qlik Audition Project
 > A simple RESTful backend service
 
+Publicly available at: [http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:7000](http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:7000)
+
 ## Architecture
 
-- MySQL 5.5.46
+- MySQL 5.5.57
 - Express 4.15.3
 - Angular 1.6.5
 - Node 8.6.0
@@ -12,7 +14,11 @@ Block diagram coming soon...
 
 ## Deployment
 
-Instructions coming soon...
+Unforunately due to linking problems between the application container and the MySQL container I was unable to deploy it using Docker! However to deploy this on **Ubuntu 14.04** (*feel free to try on your own system though*) follow the instructions below!
+
+Install the following prerequisites:
+- MySQL 5.5.57 (or higher)
+- Node 8.6.0 (latest)
 
 ## Installation
 
@@ -156,9 +162,27 @@ __Return__
 Linux & OS X:
 
 ### Unit tests
+
+Jasmine is used to run the unit tests through Karma and can be configured inside **karma.conf.js**.
+A headless broswer, PhantomJS is used and as such may throw a hidden dependency error on Ubuntu:
+
+```
+node_modules/phantomjs/lib/phantom/bin/phantomjs: error while loading shared libraries: libfontconfig.so.1: cannot open shared object file: No such file or directory
+```
+
+If this happens make sure that **libfontconfig** is installed.
+```sh
+sudo apt-get install libfontconfig
+```
+
+#### To run
+
 ```sh
 npm test
 ```
+
+![alt-text](https://image.ibb.co/crYLyw/Unit.jpg "Unit tests")
+
 
 ### e2e test
 
