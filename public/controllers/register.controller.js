@@ -1,23 +1,28 @@
-angular
-  .module('qlik')
-  .controller('register', ['$scope', 'authentication', 'userService', register]); 
+(function() {
+  'use strict';
 
-function register($scope, authentication, userService) {
+  angular
+    .module('qlik')
+    .controller('register', ['$scope', 'authentication', 'userService', register]); 
 
-  /**
-   * Submits the register form and authenticates user account
-   */
-  $scope.submit = function() {
+  function register($scope, authentication, userService) {
 
-    // Prevent submitting invalid forms
-    if ($scope.registerForm.$invalid) return;
+    /**
+     * Submits the register form and authenticates user account
+     */
+    $scope.submit = function() {
 
-    userService.createUser($scope.account).then(function(response) {
-      authentication.createSession($scope.account);
-    })
-    .catch(function(error) {
-      console.log(error);
-      $scope.error = true;
-    });
+      // Prevent submitting invalid forms
+      if ($scope.registerForm.$invalid) return;
+
+      userService.createUser($scope.account)
+      .then(function(response) {
+        authentication.createSession($scope.account);
+      })
+      .catch(function(error) {
+        console.log(error);
+        $scope.error = true;
+      });
+    }
   }
-}
+})();

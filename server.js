@@ -1,12 +1,9 @@
-// Load and initialize express
 var express = require('express');
 var app = express();
+var port = 3000;
 
 // Load body parser to parse requests
 var bodyParser = require('body-parser');
-
-// Configure the port which the app is ran
-var port = 7000;
 
 // Set the response headers
 app.use(function(req, res, next) {

@@ -1,8 +1,11 @@
-angular
+(function() {
+  'use strict';
+
+  angular
     .module('qlik', ['app.auth', 'ngRoute'])
     .config(['$routeProvider', '$locationProvider', '$httpProvider', config]);
 
-function config($routeProvider, $locationProvider, $httpProvider) {
+  function config($routeProvider, $locationProvider, $httpProvider) {
     
     // Configure routes for the app
     $routeProvider.when('/', {
@@ -21,4 +24,5 @@ function config($routeProvider, $locationProvider, $httpProvider) {
 
     // Enable HTML5 History API - pretty URLs *_*
     $locationProvider.html5Mode(true);
-}
+  }
+})();

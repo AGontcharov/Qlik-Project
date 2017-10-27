@@ -1,26 +1,30 @@
-angular
-  .module('app.auth')
-  .service('session', session);
+(function() {
+  'use strict';
 
-function session() {
+  angular
+    .module('app.auth')
+    .service('session', session);
 
-  /**
-   * Create user session
-   * @param {String} user - The username
-   * @param {String} role - The user's role
-   */
-  this.create = function(user, role) {
-    this.user = user;
-    this.role = role;
-  };
+  function session() {
 
-  /*
-   *  Destroys the user session
-   */
-  this.destroy = function() {
-    this.user = null;
-    this.role = null;
+    /**
+     * Create user session
+     * @param {String} user - The username
+     * @param {String} role - The user's role
+     */
+    this.create = function(user, role) {
+      this.user = user;
+      this.role = role;
+    };
+
+    /*
+     *  Destroys the user session
+     */
+    this.destroy = function() {
+      this.user = null;
+      this.role = null;
+    }
+
+    return this;
   }
-
-  return this;
-}
+})();

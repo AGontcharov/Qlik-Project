@@ -12,8 +12,8 @@
   },
   "author": "Alexander Gontcharov",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/AGontcharov/Qlik-Project.git"
+    "type": "git",
+    "url": "https://github.com/AGontcharov/Qlik-Project.git"
   },
   "license": "ISC",
   "dependencies": {
