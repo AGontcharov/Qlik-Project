@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var users = require('./resources/users.js');
 var messages = require('./resources/messages.js');

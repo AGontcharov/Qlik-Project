@@ -1,3 +1,5 @@
+'use strict';
+
 var db = require('../database.js')
 
 module.exports = {
@@ -124,7 +126,7 @@ module.exports = {
     var strlen = palindrome.length - 1;
 
     // Iterate over the string
-    for (i = 0; i < palindrome.length; i++) {
+    for (var i = 0; i < palindrome.length; i++) {
       
       // Post decrement strlen after comparison
       if (palindrome[i] !== palindrome[strlen--]) {

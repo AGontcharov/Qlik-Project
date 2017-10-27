@@ -1,7 +1,7 @@
 # Qlik Audition Project
 > A simple RESTful backend service
 
-Publicly available at: [http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:7000](http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:7000)
+Publicly available at: [http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:3000](http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:3000)
 
 ## Architecture
 

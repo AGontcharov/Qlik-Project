@@ -21,7 +21,7 @@ var homePage = function() {
 
   // Getters
   this.get = function() {
-     browser.get('http://localhost:7000/home');
+     browser.get('http://localhost:3000/home');
   }
 
   this.getMessage = function(id) {

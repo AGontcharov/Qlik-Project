@@ -1,3 +1,5 @@
+'use strict';
+
 var loginPage = function() {
   
   this.registerLink = element.all(by.tagName('a')).get(0);
@@ -7,7 +9,7 @@ var loginPage = function() {
   this.usernameError = element.all(by.css('.form-error')).get(1);
 
   this.get = function() {
-      browser.get('http://localhost:7000/login');
+      browser.get('http://localhost:3000/login');
   }
 
   this.setUsername = function(username) {

@@ -1,3 +1,5 @@
+'use strict';
+
 var registerPage = require('./register.page.js');
 var db = require('../../server/database.js');
 
@@ -9,8 +11,23 @@ describe('Qlik Audition register', function() {
   // Delete all cookies and e2e user in database
   beforeAll(function(){
     browser.manage().deleteAllCookies();
-    db.query("DELETE FROM Users WHERE Username='e2e'", function(err, rows, field) {
+
+    var id;
+    db.query("Select ID FROM Users Where Username='e2e'", function(err, rows, field) {
       if (err) throw err;
+
+      // Delete e2e user
+      if (rows.length) {
+        id = rows[0].ID
+
+        db.query("DELETE FROM Messages WHERE Messages.ID='?'", id, function(err, rows, field) {
+          if (err) throw err;
+        });
+
+        db.query("DELETE FROM Users WHERE ID='?'", id, function(err, rows, field) {
+          if (err) throw err;
+        });
+      }
     });
   })
 

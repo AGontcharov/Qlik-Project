@@ -1,3 +1,5 @@
+'use strict';
+
 var homePage = require('./home.page.js');
 var db = require('../../server/database.js');
 

@@ -1,3 +1,5 @@
+'use strict';
+
 var loginPage = require('./login.page.js');
 var db = require('../../server/database.js');
 
@@ -16,10 +18,10 @@ describe('Qlik Audition Login', function() {
 
         if (!rows.length) {
 
-            // Creating existing user
-            db.query("INSERT INTO Users (Username) VALUES ('Alexander')", function(err, rows, fields) {
-                if (err) throw err;
-            });
+          // Creating existing user
+          db.query("INSERT INTO Users (Username) VALUES ('Alexander')", function(err, rows, fields) {
+              if (err) throw err;
+          });
         }
       });
     })
