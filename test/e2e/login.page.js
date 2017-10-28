@@ -9,12 +9,12 @@ var loginPage = function() {
   this.usernameError = element.all(by.css('.form-error')).get(1);
 
   this.get = function() {
-      browser.get('http://localhost:3000/login');
-  }
+    browser.get('http://localhost:3000/login');
+  };
 
   this.setUsername = function(username) {
-      return this.username.sendKeys(username);
-  }
-}
+    return this.username.sendKeys(username);
+  };
+};
 
 module.exports = loginPage;

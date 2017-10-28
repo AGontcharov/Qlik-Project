@@ -14,23 +14,14 @@ gulp.task('default', function() {
 });
 
 gulp.task('lint', function() {
-  gulp.src([
+  return gulp.src([
     'public/**/*.js',
     'server/**/*.js',
     'test/**/*.js',
     '*.js'
   ])
   .pipe(jshint(jshintConfig))
-  .pipe(jshint.reporter('jshint-stylish'));
-});
-
-gulp.task('jscs', function() {
-  gulp.src([
-    'public/**/*.js',
-    'server/**/*.js',
-    '*.js',
-    '!karma.conf.js'
-  ])
   .pipe(jscs())
+  .pipe(jshint.reporter('jshint-stylish'))
   .pipe(jscs.reporter());
 });

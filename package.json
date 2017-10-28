@@ -43,7 +43,19 @@
     "eqeqeq": true,
     "strict": "global",
     "validthis": true,
+    "esversion": 6,
     "jasmine": true,
-    "node": true
+    "node": true,
+    "predef": [
+      "inject",
+      "protractor",
+      "browser",
+      "by",
+      "element",
+      "it",
+      "describe",
+      "beforeEach",
+      "afterEach"
+    ]
   }
 }

@@ -4,6 +4,8 @@ var express = require('express');
 var app = express();
 var port = 3000;
 
+var api = require('./server/endpoints.js');
+
 // Load body parser to parse requests
 var bodyParser = require('body-parser');
 
@@ -21,7 +23,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Load the api router
-var api = require('./server/endpoints.js');
 app.use('/api', api);
 
 // Serves static contents from the /public folder

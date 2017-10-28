@@ -9,16 +9,17 @@ describe('Qlik Audition register', function() {
   var register = new registerPage();
 
   // Delete all cookies and e2e user in database
-  beforeAll(function(){
+  beforeAll(function() {
     browser.manage().deleteAllCookies();
 
     var id;
+
     db.query("Select ID FROM Users Where Username='e2e'", function(err, rows, field) {
       if (err) throw err;
 
       // Delete e2e user
       if (rows.length) {
-        id = rows[0].ID
+        id = rows[0].ID;
 
         db.query("DELETE FROM Messages WHERE Messages.ID='?'", id, function(err, rows, field) {
           if (err) throw err;
@@ -29,14 +30,14 @@ describe('Qlik Audition register', function() {
         });
       }
     });
-  })
+  });
 
   // Get register url
   beforeEach(function() {
     register.get();
   });
 
-  it('Should get the browser title', function() {     
+  it('Should get the browser title', function() {
     expect(browser.getTitle()).toEqual('Qlik Audition');
   });
 

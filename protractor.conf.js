@@ -1,3 +1,5 @@
+'use strict';
+
 let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {

@@ -28,6 +28,7 @@
   "requirePaddingNewLineAfterVariableDeclaration": true,
   "requirePaddingNewLinesBeforeExport": true,
   "requirePaddingNewLinesBeforeLineComments": true,
+  "requireParenthesesAroundIIFE": true,
   "requireSpaceBeforeBlockStatements": true,
   "requireSpaceBeforeObjectValues": true,
   "requireSpaceBetweenArguments": true,
@@ -38,5 +39,9 @@
   },
   "requireSpacesInsideObjectBrackets": "all",
   "requireSemicolons": true,
-  "validateIndentation": 2
+  "validateIndentation": 2,
+
+  "excludeFiles": [
+    "karma.conf.js"
+  ]
 }

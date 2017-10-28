@@ -9,12 +9,12 @@ var registerPage = function() {
   this.usernameError = element.all(by.css('.form-error')).get(1);
 
   this.get = function() {
-      browser.get('http://localhost:3000/');
-  }
+    browser.get('http://localhost:3000/');
+  };
 
   this.setUsername = function(username) {
-      return this.username.sendKeys(username);
-  }
-}
+    return this.username.sendKeys(username);
+  };
+};
 
 module.exports = registerPage;

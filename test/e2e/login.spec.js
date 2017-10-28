@@ -9,22 +9,22 @@ describe('Qlik Audition Login', function() {
   var login = new loginPage();
 
   // Delete all cookies
-    beforeAll(function() {
-      browser.manage().deleteAllCookies();
+  beforeAll(function() {
+    browser.manage().deleteAllCookies();
 
-      // Check for existing user
-      db.query("SELECT * FROM Users WHERE Username='Alexander'", function(err, rows, fields) {
-        if (err) throw err;
+    // Check for existing user
+    db.query("SELECT * FROM Users WHERE Username='Alexander'", function(err, rows, fields) {
+      if (err) throw err;
 
-        if (!rows.length) {
+      if (!rows.length) {
 
-          // Creating existing user
-          db.query("INSERT INTO Users (Username) VALUES ('Alexander')", function(err, rows, fields) {
-              if (err) throw err;
-          });
-        }
-      });
-    })
+        // Creating existing user
+        db.query("INSERT INTO Users (Username) VALUES ('Alexander')", function(err, rows, fields) {
+          if (err) throw err;
+        });
+      }
+    });
+  });
 
   // Get login url
   beforeEach(function() {
@@ -52,7 +52,7 @@ describe('Qlik Audition Login', function() {
   it('Should navigate to the home page', function() {
     login.setUsername('Alexander');
     login.submit.click().then(function() {
-          expect(browser.getCurrentUrl()).toMatch('/home');
+        expect(browser.getCurrentUrl()).toMatch('/home');
       });
 
   });
