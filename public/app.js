@@ -3,22 +3,22 @@
 
   angular
     .module('qlik', ['app.auth', 'ngRoute'])
-    .config(['$routeProvider', '$locationProvider', '$httpProvider', config]);
+    .config(['$routeProvider', '$locationProvider', config]);
 
-  function config($routeProvider, $locationProvider, $httpProvider) {
+  function config($routeProvider, $locationProvider) {
     
     // Configure routes for the app
     $routeProvider.when('/', {
-        templateUrl: '/views/register.html',
-        controller: 'register'
+      templateUrl: '/views/register.html',
+      controller: 'register'
     })
     .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'login'
+      templateUrl: 'views/login.html',
+      controller: 'login'
     })
     .when('/home', {
-        templateUrl: 'views/home.html',
-        controller: 'home'
+      templateUrl: 'views/home.html',
+      controller: 'home'
     })
     .otherwise({ redirectTo: '/home' });
 

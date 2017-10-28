@@ -3,7 +3,7 @@
 
   angular
     .module('qlik')
-    .factory('userService', ['$http', '$q', userService]); 
+    .factory('userService', ['$http', '$q', userService]);
 
   function userService($http, $q) {
 
@@ -21,19 +21,19 @@
     function createUser(user) {
       return $http.post(BASE_URL + '/users', user)
       .then(successHandle)
-      .catch(function(response) { return errorHandle(response, 'Error creating user') });
+      .catch(function(response) { return errorHandle(response, 'Error creating user'); });
     }
 
     function authenticate(user) {
       return $http.post(BASE_URL + '/users/login', user)
-      .then(successHandle) 
-      .catch(function(response) { return errorHandle(response, 'Error authenticating user') });
-    } 
+      .then(successHandle)
+      .catch(function(response) { return errorHandle(response, 'Error authenticating user'); });
+    }
 
     function getUsers() {
       return $http.get(BASE_URL + '/users')
       .then(successHandle)
-      .catch(function(response) { return errorHandle(response, 'Error getting list of users') });
+      .catch(function(response) { return errorHandle(response, 'Error getting list of users'); });
     }
 
     /**

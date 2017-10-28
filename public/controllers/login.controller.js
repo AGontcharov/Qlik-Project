@@ -23,6 +23,6 @@
         console.log(error);
         $scope.error = true;
       });
-    }
+    };
   }
 })();

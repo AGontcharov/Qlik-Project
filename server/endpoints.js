@@ -7,7 +7,7 @@ var messages = require('./resources/messages.js');
 // Create api router
 var apiRouter = express.Router();
 
-// Router middleware for every request. 
+// Router middleware for every request
 apiRouter.use(function(req, res, next) {
   console.log(req.method, req.url);
   console.log(req.body);
@@ -35,7 +35,7 @@ apiRouter.get('/messages/:messageID(\\d+)/palindrome', messages.getMessageByID, 
 
 // Default response for requests not matched above
 apiRouter.use(function(req, res) {
-    res.status(404).end('Resource not found');
+  res.status(404).end('Resource not found');
 });
 
 module.exports = apiRouter;

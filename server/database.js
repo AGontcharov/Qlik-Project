@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   host: '127.0.0.1',
   database: config.mysql.database,
   user: config.mysql.user,
-  password: config.mysql.password,
+  password: config.mysql.password
 });
 
 // Connect to the database

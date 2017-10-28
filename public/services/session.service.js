@@ -23,7 +23,7 @@
     this.destroy = function() {
       this.user = null;
       this.role = null;
-    }
+    };
 
     return this;
   }

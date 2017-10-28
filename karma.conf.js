@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Mon Sep 18 2017 13:23:56 GMT-0400 (EDT)
+'use strict';
 
 module.exports = function(config) {
   config.set({
@@ -86,5 +87,5 @@ module.exports = function(config) {
       captureConsole: false
     }
 
-  })
-}
+  });
+};

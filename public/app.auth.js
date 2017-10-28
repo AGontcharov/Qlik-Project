@@ -13,10 +13,10 @@
       // Allow navigation to register and login page without being authenticated
       if ($location.path() !== '/' && $location.path() !== '/login') {
           
-          if (!authentication.isAuthenticated()) {
-              event.preventDefault();
-              $location.path('/login');
-          }
+        if (!authentication.isAuthenticated()) {
+          event.preventDefault();
+          $location.path('/login');
+        }
       }
     });
   }

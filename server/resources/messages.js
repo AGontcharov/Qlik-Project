@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('../database.js')
+var db = require('../database.js');
 
 module.exports = {
 
@@ -23,6 +23,7 @@ module.exports = {
     if (!req.body.content) return res.status(400).send('Missing content');
                
     var args = [res.locals.userID, req.body.subject, req.body.content];
+    
     db.query("INSERT INTO Messages (ID, Subject, Content) VALUES (?, ?, ?)", args, function(err, rows, fields) {
       
       // HTTP 500 Internal
@@ -122,7 +123,7 @@ module.exports = {
   isPalindrome: function(req, res, next) {
 
     // Allow validating case insentive phrases
-    var palindrome = res.locals.palindrome.toUpperCase().replace(/ /g,'');
+    var palindrome = res.locals.palindrome.toUpperCase().replace(/ /g, '');
     var strlen = palindrome.length - 1;
 
     // Iterate over the string
@@ -139,4 +140,4 @@ module.exports = {
     // HTTP 200 Ok True
     return res.status(200).send(true);
   }
-}
+};

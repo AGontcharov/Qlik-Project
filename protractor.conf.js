@@ -2,7 +2,7 @@ let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {
   framework: 'jasmine',
-  seleniumAddress: 'http://localhost:4444/wd/hub', 
+  seleniumAddress: 'http://localhost:4444/wd/hub',
   
   specs: [
     'test/e2e/login.spec.js',
@@ -20,17 +20,17 @@ exports.config = {
     browserName: 'chrome'
   },
 
-  jasmineNodeOpts: { 
+  jasmineNodeOpts: {
     showColors: true,
     isVerbose: true,
     print: function() {}
   },
 
-  onPrepare: function () {
+  onPrepare: function() {
     jasmine.getEnv().addReporter(new SpecReporter({
       spec: {
         displayStacktrace: true
       }
     }));
-  },
-}
+  }
+};

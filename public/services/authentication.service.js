@@ -53,7 +53,7 @@
      */
     function isAuthenticated() {
       return !!session.user;
-    };
+    }
 
     /**
      * Logs the user out and destroys the user session and cookie
@@ -62,6 +62,6 @@
       session.destroy();
       $cookies.remove('user');
       $location.path('/login');
-    };
+    }
   }
 })();

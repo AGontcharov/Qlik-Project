@@ -1,0 +1,42 @@
+{
+  "disallowMixedSpacesAndTabs": true,
+  "disallowMultipleLineBreaks": true,
+  "disallowNewlineBeforeBlockStatements": true,
+  "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
+  "disallowSpaceBeforeSemicolon": true,
+  "disallowSpacesInCallExpression": true,
+  "disallowSpacesInFunction": {
+    "beforeOpeningRoundBrace": true
+  },
+  "disallowTrailingComma": true,
+  "disallowTrailingWhitespace": "ignoreEmptyLines",
+  "disallowYodaConditions": [
+    "==",
+    "===",
+    "!=",
+    "!=="
+  ],
+  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "requireCommaBeforeLineBreak": true,
+  "requireEarlyReturn": true,
+  "requireKeywordsOnNewLine": ["else"],
+  "requireLineBreakAfterVariableAssignment": true,
+  "requireObjectKeysOnNewLine": {
+    "allExcept": ["sameLine"]
+  },
+  "requirePaddingNewLinesAfterUseStrict": true,
+  "requirePaddingNewLineAfterVariableDeclaration": true,
+  "requirePaddingNewLinesBeforeExport": true,
+  "requirePaddingNewLinesBeforeLineComments": true,
+  "requireSpaceBeforeBlockStatements": true,
+  "requireSpaceBeforeObjectValues": true,
+  "requireSpaceBetweenArguments": true,
+  "requireSpacesInConditionalExpression": true,
+  "requireSpacesInForStatement": true,
+  "requireSpacesInFunction": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "requireSpacesInsideObjectBrackets": "all",
+  "requireSemicolons": true,
+  "validateIndentation": 2
+}

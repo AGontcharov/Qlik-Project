@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('../database.js')
+var db = require('../database.js');
 
 module.exports = {
   
@@ -29,7 +29,7 @@ module.exports = {
       if (!rows.length) {
         db.query("INSERT INTO Users (Username) VALUES(?)", req.body.username, function(err, rows, fields) {
           
-          //HTTP 500 Internal
+          // HTTP 500 Internal
           if (err) return res.status(500).send('Server error');
 
           // HTTP 201 Created
@@ -108,6 +108,7 @@ module.exports = {
     if (!req.body.username) return res.status(400).send('Missing username');
 
     var username = req.body.username ? req.body.username : req.params.username;
+    
     db.query("SELECT ID FROM Users WHERE Username=? LIMIT 1", username, function(err, rows, fields) {
       
       // HTTP 500 Internal
@@ -121,4 +122,4 @@ module.exports = {
       next();
     });
   }
-}
+};

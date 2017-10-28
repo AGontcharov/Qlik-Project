@@ -3,7 +3,7 @@
 
   angular
     .module('qlik')
-    .controller('register', ['$scope', 'authentication', 'userService', register]); 
+    .controller('register', ['$scope', 'authentication', 'userService', register]);
 
   function register($scope, authentication, userService) {
 
@@ -23,6 +23,6 @@
         console.log(error);
         $scope.error = true;
       });
-    }
+    };
   }
 })();

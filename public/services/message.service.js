@@ -23,31 +23,31 @@
     function createMessage(message) {
       return $http.post(BASE_URL + '/messages', message)
       .then(successHandle)
-      .catch(function(response) { return errorHandle(response, 'Error posting message') });
+      .catch(function(response) { return errorHandle(response, 'Error posting message'); });
     }
 
     function getMessages() {
       return $http.get(BASE_URL + '/messages')
       .then(successHandle)
-      .catch(function(response) { return errorHandle(response, 'Error getting list of messages') });
+      .catch(function(response) { return errorHandle(response, 'Error getting list of messages'); });
     }
 
     function getMessageByID(id) {
       return $http.get(BASE_URL + '/messages/' + id)
       .then(successHandle)
-      .catch(function(response) { return errorHandle(response, 'Error getting message by ID') });
+      .catch(function(response) { return errorHandle(response, 'Error getting message by ID'); });
     }
 
     function deleteMessageByID(id) {
       return $http.delete(BASE_URL + '/messages/' + id)
       .then(successHandle)
-      .catch(function(response) { return errorHandle(response, 'Error deleting message by ID') });
+      .catch(function(response) { return errorHandle(response, 'Error deleting message by ID'); });
     }
 
     function isPalindrome(id) {
       return $http.get(BASE_URL + '/messages/' + id + '/palindrome')
       .then(successHandle)
-      .catch(function(resposne) { return errorHandle(response, 'Error checking if message is palindrome') });
+      .catch(function(response) { return errorHandle(response, 'Error checking if message is palindrome'); });
     }
 
     /**

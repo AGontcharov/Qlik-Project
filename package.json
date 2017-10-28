@@ -26,12 +26,24 @@
     "angular-cookies": "^1.6.5",
     "angular-mocks": "^1.6.5",
     "angular-route": "^1.6.5",
+    "gulp": "^3.9.1",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.4",
     "jasmine": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
+    "jshint": "^2.9.5",
+    "jshint-stylish": "^2.2.1",
     "karma": "^1.7.1",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-spec-reporter": "0.0.31",
     "protractor": "^5.1.2"
+  },
+  "jshintConfig": {
+    "eqeqeq": true,
+    "strict": "global",
+    "validthis": true,
+    "jasmine": true,
+    "node": true
   }
 }

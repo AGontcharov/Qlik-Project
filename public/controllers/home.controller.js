@@ -27,15 +27,15 @@
       .catch(function(error) {
         console.log(error);
       });
-    }
+    };
 
     /**
      * Toggles between viewing messages
      * @param {Object} message - The message instance
      */
     $scope.selectedMessage = function(message) {
-      message.selected ? message.selected = false : message.selected = true;
-    }
+      message.selected  = message.selected ? false : true;
+    };
 
     /**
      * Deletes the selected message
@@ -50,7 +50,7 @@
       .catch(function(error) {
         console.log(error);
       });
-    }
+    };
 
     /**
      * Checks if the selected message content is a palidrome
@@ -68,7 +68,7 @@
       .catch(function(error) {
         console.log(error);
       });
-    }
+    };
     
     /**
      * Private function used to initializes the controller after every request
