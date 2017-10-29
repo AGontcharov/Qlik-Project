@@ -8,11 +8,12 @@
     <!-- Bootstrap4 Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-   <!-- Stylesheets -->
+   <!-- build:css -->
    <link href="/assets/css/index.css" rel="stylesheet" type="text/css">
    <link href="/assets/css/form.css" rel="stylesheet" type="text/css">
    <link href="/assets/css/navbar.css" rel="stylesheet" type="text/css">
    <link href="/assets/css/home.css" rel="stylesheet" type="text/css">
+    <!-- endbuild -->
 
   </head>
 
@@ -61,25 +62,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-cookies.min.js"></script>
-    <script src="app.auth.js"></script>
-    <script src="app.js"></script>
 
     <!-- Bootstrap4 -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-    <!-- Controllers -->
+    <!-- build:js -->
+    <script src="app.auth.module.js"></script>
+    <script src="app.module.js"></script>
     <script src="/controllers/register.controller.js"></script>
     <script src="/controllers/login.controller.js"></script>
     <script src="/controllers/navbar.controller.js"></script>
     <script src="/controllers/home.controller.js"></script>
-
-    <!-- Services -->
     <script src="/services/user.service.js"></script>
     <script src="/services/message.service.js"></script>
     <script src="/services/session.service.js"></script>
     <script src="/services/authentication.service.js"></script>
-    
+    <!-- endbuild -->
+
   </body>
 </html>

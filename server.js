@@ -26,11 +26,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api', api);
 
 // Serves static contents from the /public folder
-app.use('/', express.static(__dirname + '/public'));
+app.use('/', express.static(__dirname + '/public/app'));
 
 // Serves the index file on any get request
 app.get('*', function(req, res) {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/app/index.html');
 });
 
 // Create HTTP server

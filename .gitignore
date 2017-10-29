@@ -1,3 +1,4 @@
 node_modules
-toDo
 config.json
+toDo
+public/src/*
