@@ -5,6 +5,11 @@ var bodyParser = require('body-parser');
 var api = require('./server/endpoints.js');
 
 var app = express();
+var path = '/public/app';
+
+if (process.env.NODE_ENV === 'production') {
+    path = '/public/src'
+}
 
 // Set the response headers
 app.use(function(req, res, next) {
@@ -21,11 +26,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api', api);
 
 // Serves static content
-app.use('/', express.static(__dirname + '/public/app'));
+app.use('/', express.static(__dirname + path));
 
 // Serves the index file on any get request
 app.get('*', function(req, res) {
-  res.sendFile(__dirname + '/public/app/index.html');
+  res.sendFile(__dirname + path + '/index.html');
 });
 
 var port = process.env.PORT || 3000;

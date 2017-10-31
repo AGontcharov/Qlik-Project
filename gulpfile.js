@@ -17,7 +17,7 @@ jshintConfig.lookup = false;
 
 // Default
 gulp.task('default', function() {
-  gulp.start('styles', 'scripts', 'html');
+  gulp.start('styles', 'scripts', 'html', 'index');
 });
 
 // Linter
@@ -62,7 +62,7 @@ gulp.task('styles', function() {
 gulp.task('html', function() {
   return gulp.src('public/app/views/**/*.html')
   .pipe(htmlMin({collapseWhitespace: true}))
-  .pipe(gulp.dest('public/src'));
+  .pipe(gulp.dest('public/src/views'));
 });
 
 // Index
