@@ -8,7 +8,7 @@ var app = express();
 var path = '/public/app';
 
 if (process.env.NODE_ENV === 'production') {
-    path = '/public/src'
+  path = '/public/src';
 }
 
 // Set the response headers

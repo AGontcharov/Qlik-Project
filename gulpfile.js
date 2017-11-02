@@ -8,24 +8,30 @@ var jscs = require('gulp-jscs');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var prefix = require('gulp-autoprefixer');
+var htmlhint = require('gulp-htmlhint');
 var cleanCSS = require('gulp-clean-css');
 var htmlMin = require('gulp-htmlmin');
 var htmlreplace = require('gulp-html-replace');
+var bytediff = require('gulp-bytediff');
+var del = require('del');
 
 // Prevent looking up default files
 jshintConfig.lookup = false;
 
-// Default
-gulp.task('default', function() {
-  gulp.start('styles', 'scripts', 'html', 'index');
-});
+// Build
+gulp.task('default', [
+  'styles',
+  'scripts',
+  'html',
+  'index'
+]);
 
-// Linter
+// JavaScript Jshint and JSCS
 gulp.task('lint', function() {
   return gulp.src([
-    'public/**/*.js',
+    'public/app/**/*.js',
     'server/**/*.js',
-    'test/**/*.js',
+    'spec/**/*.js',
     '*.js'
   ])
   .pipe(jshint(jshintConfig))
@@ -34,19 +40,21 @@ gulp.task('lint', function() {
   .pipe(jscs.reporter());
 });
 
-// Scripts
-gulp.task('scripts', function() {
+// Minify JavaScript
+gulp.task('scripts', ['lint'], function() {
   return gulp.src([
     'public/app/app.module.js',
     'public/app/**/*module.js',
     'public/app/**/*.js'
     ])
   .pipe(concat('app.min.js'))
+  .pipe(bytediff.start())
   .pipe(uglify())
+  .pipe(bytediff.stop())
   .pipe(gulp.dest('public/src'));
 });
 
-// Styles
+// Minify CSS
 gulp.task('styles', function() {
   return gulp.src([
     'pubic/app/assets/css/index.css',
@@ -54,23 +62,50 @@ gulp.task('styles', function() {
     ])
   .pipe(prefix('last 2 versions'))
   .pipe(concat('app.min.css'))
-  .pipe(cleanCSS())
+  .pipe(bytediff.start())
+  .pipe(cleanCSS({
+    level: 2
+  }))
+  .pipe(bytediff.stop())
   .pipe(gulp.dest('public/src'));
 });
 
-// HTML
-gulp.task('html', function() {
+// htmlhint
+gulp.task('htmlhint', function() {
+  return gulp.src('public/app/**/*.html')
+  .pipe(htmlhint('.htmlhintrc'))
+  .pipe(htmlhint.reporter());
+});
+
+// Minify HTML
+gulp.task('html', ['htmlhint'], function() {
   return gulp.src('public/app/views/**/*.html')
-  .pipe(htmlMin({collapseWhitespace: true}))
+  .pipe(bytediff.start())
+  .pipe(htmlMin({
+    collapseWhitespace: true,
+    removeComments: true
+  }))
+  .pipe(bytediff.stop())
   .pipe(gulp.dest('public/src/views'));
 });
 
-// Index
+// Minify and rewrite index.html
 gulp.task('index', function() {
   return gulp.src('public/app/index.html')
+  .pipe(bytediff.start())
   .pipe(htmlreplace({
     'js': 'app.min.js',
     'css': 'app.min.css'
   }))
+  .pipe(htmlMin({
+    collapseWhitespace: true,
+    removeComments: true
+  }))
+  .pipe(bytediff.stop())
   .pipe(gulp.dest('public/src'));
+});
+
+// Clean build
+gulp.task('clean', function() {
+  return del('public/src/**');
 });
