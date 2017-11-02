@@ -1,9 +1,10 @@
-html {
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     background: #F9F9F9;
 }
@@ -22,52 +23,30 @@ h1, h2, h3 {
 
 .wrap {
     min-height: 100%;
-}
-
-
-/* Footer */
-.main {
-    overflow: auto;
-    padding-bottom: 190px; /* This needs to be bigger than footer height */
-}
-
-.footer {
     position: relative;
-    margin-top: -190px; /* Negative value of footer height */
+}
+
+#main {
+    padding-bottom: 190px;
+    height: auto;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
     height: 190px;
-    clear: both;
+    width: 100%;
     padding-top: 20px;
     background: #EDEFF1;
 }
 
 /* Increase footer height on screen widths < 768px . */
 @media (max-width: 768px) {
-    .main {
+    #main {
         padding-bottom: 300px;
     }
 
-    .footer {
-        margin-top: -300px;
+    #footer {
         height: 300px;
     }
-}
-
-.footer h3 {
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #BAC1C8;
-}
-
-.footer ul {
-    list-style-type: none;
-    padding-left: 0;
-    color: #7F8C8D;
-    text-align: left;
-}
-
-.footer li {
-    text-align: center;
 }

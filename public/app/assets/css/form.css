@@ -11,9 +11,15 @@
     font-size: 24px;
 }
 
-/* 260px offset row height for the forms with all errors */
+/* 255px offset row height for header and footer*/
 .offset-height {
-    height: calc(100% - 260px) 
+    height: calc(100vh - 255px);
+}
+
+@media (max-width: 768px) {
+    .offset-height {
+        height: calc(100vh - 365px);
+    }
 }
 
 /* Forms */
