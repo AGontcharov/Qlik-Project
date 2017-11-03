@@ -1,20 +1,20 @@
 # Qlik Audition Project
-> A simple RESTful backend service
+> A simple RESTful message storing service
 
 Publicly available at: [http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:3000](http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:3000)
 
-## Architecture
+## Implementation Architecture
 
-- MySQL 5.5.57
-- Express 4.15.3
-- Angular 1.6.5
-- Node 8.6.0
+- **M**ySQL is used to store records in the database
+- **E**xpress is used as middleware stack for API routes
+- **A**ngular is used as the JS Client Framework
+- **N**ode Is used along with Express for the server
 
 ![alt-text](https://image.ibb.co/dTUSTw/Block_Diagram.png "Block Diagram")
 
 ## Deployment
 
-Unforunately due to linking problems between the application container and the MySQL container I was unable to deploy it using Docker! However to deploy this on **Ubuntu 14.04** (*feel free to try on your own system though*) follow the instructions below!
+To deploy this on **Ubuntu 14.04** (*feel free to try on your own system though*) follow the instructions below!
 
 Install the following **prerequisites**:
 - `MySQL 5.5.57` (or higher)
@@ -30,9 +30,9 @@ Linux & OS X:
 
 1. `git clone https://github.com/AGontcharov/Qlik-project.git`
 
-2. `CD Qlik-Project`
+2. `cd Qlik-Project`
 
-3. `Sudo npm install`
+3. `sudo npm install`
 
 4. `mysql -u root -p < init.sql`
 
@@ -82,7 +82,7 @@ Data Params: N/A
 Success Response Codes: 200
 
 Success Response Content:
-```sh
+```{json}
 {
   "version": "1.0",
   "documentation": "https://github.com/AGontcharov/Qlik-Project"
@@ -100,7 +100,7 @@ Method: POST
 URL Params: N/A
 
 Data Params: 
-```sh
+```{json}
 {
   "username": "Qlik"
 }
@@ -153,7 +153,20 @@ Data Params: N/A
 
 Success Response Codes: 200
 
-Success Response Content: `Array of usernames`
+Success Response Content:
+```{json}
+[
+  {
+    "Username":"Alexander"
+  },
+  {
+    "Username":"Brandon"
+  },
+  {
+    "Username":"Chris"
+  }
+]
+```
 
 Error Response Codes: 404 `"No users are registered in the system"`
 
@@ -166,7 +179,7 @@ URL: `api/messages`
 URL Params: N/A
 
 Data Params:
-```sh
+```{json}
 {
   "username": "Qlik",
   "subject": "Example",
@@ -195,7 +208,27 @@ Data Params: N/A
 
 Success Response Codes: 200
 
-Success Response Content: `Array of messages`
+Success Response Content:
+```{json}
+[
+  {
+      "ID":1,
+      "MessageID":2,
+      "Subject":"First Message!",
+      "Date":"2017-09-30T23:29:43.000Z",
+      "Content":"I got here first!",
+      "Username":"Alexander"
+  },
+  {
+      "ID":5,
+      "MessageID":27,
+      "Subject":"Another Palindrome",
+      "Date":"2017-10-02T09:23:04.000Z",
+      "Content":"1234554321",
+      "Username":"Sergey"
+  }
+]
+```
 
 Error Response Codes:
 - 404 `"Messages not found"`
@@ -213,7 +246,19 @@ Data Params: N/A
 
 Success Response Codes: 200
 
-Success Response Content: `A Message Array`
+Success Response Content: 
+```{json}
+[
+  {
+      "ID":1,
+      "MessageID":2,
+      "Subject":"First Message!",
+      "Date":"2017-09-30T23:29:43.000Z",
+      "Content":"I got here first!",
+      "Username":"Alexander"
+  }
+]
+```
 
 Error response Codes:
 - 404 `"Message not found"`
@@ -255,23 +300,17 @@ Error Response Codes: 500 `"Server error"`
 
 Linux & OS X:
 
-### Unit tests
+### Unit Tests
 
 Jasmine is used to run the unit tests through Karma and can be configured inside **karma.conf.js**.
-A headless broswer, PhantomJS is used and as such may throw a hidden dependency error on Ubuntu:
-
-```
-node_modules/phantomjs/lib/phantom/bin/phantomjs: error while loading shared libraries: libfontconfig.so.1: cannot open shared object file: No such file or directory
-```
-
-If this happens make sure that **libfontconfig** is installed.
-`sudo apt-get install libfontconfig`
 
 1. `npm test`
 
 ![alt-text](https://image.ibb.co/crYLyw/Unit.jpg "Unit tests")
 
-### e2e test
+### E2E Tests
+
+Protractor is used to run the end-to-end test and can be configured inside **protractor.conf.js**.
 
 1. `npm start`
 
@@ -280,8 +319,6 @@ If this happens make sure that **libfontconfig** is installed.
 3. `npm run test-e2e`
 
 ![alt-text](https://image.ibb.co/dY0O1G/e2e.jpg "e2e tests")
-
-*This is ran off my VM and not the remote server where it's deployed, as I've yet to figure that out*
 
 ## Meta
 
