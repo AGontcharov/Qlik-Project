@@ -28,16 +28,16 @@
 
         <!-- Message -->
         <div class="list-group" ng-show="newsfeed">
-          <a href="#" ng-click="selectedMessage(message)" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="message in messages">
+          <a href="#" ng-click="selectedMessage(message)" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="message in ::messages">
             
             <!-- User and date -->
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{message.Username}}</h5>
-              <small>{{message.Date | date: "EEE h:m a" }}</small>
+              <h5 class="mb-1">{{:: message.Username}}</h5>
+              <small>{{:: message.Date | date: "EEE h:m a" }}</small>
             </div>
-            <p class="mb-1">{{message.Subject}}</p>
+            <p class="mb-1">{{:: message.Subject}}</p>
             <small class="palindrome" ng-show="message.palindrome">Warning palidrome detected!</small>
-            <small ng-show="message.selected">{{message.Content}}</small>
+            <small ng-show="message.selected">{{:: message.Content}}</small>
 
             <!-- Message actions -->
             <div class="message-actions" ng-show="message.selected">

@@ -51,7 +51,7 @@ gulp.task('scripts', ['lint'], function() {
   .pipe(bytediff.start())
   .pipe(uglify())
   .pipe(bytediff.stop())
-  .pipe(gulp.dest('public/src'));
+  .pipe(gulp.dest('dist'));
 });
 
 // Minify CSS
@@ -67,7 +67,7 @@ gulp.task('styles', function() {
     level: 2
   }))
   .pipe(bytediff.stop())
-  .pipe(gulp.dest('public/src'));
+  .pipe(gulp.dest('dist'));
 });
 
 // htmlhint
@@ -86,7 +86,7 @@ gulp.task('html', ['htmlhint'], function() {
     removeComments: true
   }))
   .pipe(bytediff.stop())
-  .pipe(gulp.dest('public/src/views'));
+  .pipe(gulp.dest('dist/views'));
 });
 
 // Minify and rewrite index.html
@@ -102,10 +102,10 @@ gulp.task('index', function() {
     removeComments: true
   }))
   .pipe(bytediff.stop())
-  .pipe(gulp.dest('public/src'));
+  .pipe(gulp.dest('dist'));
 });
 
 // Clean build
 gulp.task('clean', function() {
-  return del('public/src/**');
+  return del('dist/**');
 });
