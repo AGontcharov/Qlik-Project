@@ -27,26 +27,26 @@ h1, h2, h3 {
 }
 
 #main {
-    padding-bottom: 190px;
+    padding-bottom: 300px;
     height: auto;
 }
 
 #footer {
     position: absolute;
     bottom: 0;
-    height: 190px;
+    height: 300px;
     width: 100%;
     padding-top: 20px;
     background: #EDEFF1;
 }
 
-/* Increase footer height on screen widths < 768px . */
-@media (max-width: 768px) {
+/* Decrease footer height on screen widths < 768px.*/
+@media (min-width: 768px) {
     #main {
-        padding-bottom: 300px;
+        padding-bottom: 190px;
     }
 
     #footer {
-        height: 300px;
+        height: 190px;
     }
 }

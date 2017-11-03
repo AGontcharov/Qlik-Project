@@ -11,14 +11,15 @@
     font-size: 24px;
 }
 
-/* 255px offset row height for header and footer*/
+/* Offset row height for header (65px) and footer (190/300px)*/
 .offset-height {
-    height: calc(100vh - 255px);
+    height: calc(100vh - 365px);
+    min-height: 300px;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .offset-height {
-        height: calc(100vh - 365px);
+        height: calc(100vh - 255px);
     }
 }
 
