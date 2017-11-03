@@ -17,24 +17,28 @@ Publicly available at: [http://ec2-52-42-73-248.us-west-2.compute.amazonaws.com:
 Unforunately due to linking problems between the application container and the MySQL container I was unable to deploy it using Docker! However to deploy this on **Ubuntu 14.04** (*feel free to try on your own system though*) follow the instructions below!
 
 Install the following **prerequisites**:
-- MySQL 5.5.57 (or higher)
-- Node 8.6.0 (latest)
+- `MySQL 5.5.57` (or higher)
+- `Node 8.6.0` (latest)
 
 To run the **e2e test** you're also going to need:
-- Google-chrome 61.x (or higher)
-- Java SE Development Kit 8
+- `Google-chrome 61.x` (or higher)
+- `Java SE Development Kit 8`
 
 ## Installation
 
 Linux & OS X:
 
-```sh
-git clone https://github.com/AGontcharov/Qlik-project.git
-cd Qlik-Project/
-sudo npm install
-mysql -u root -p < init.sql
-npm run wd-update
-```
+1. `git clone https://github.com/AGontcharov/Qlik-project.git`
+
+2. `CD Qlik-Project`
+
+3. `Sudo npm install`
+
+4. `mysql -u root -p < init.sql`
+
+5. `npm run wd-update`
+
+
 Next provide a **config.json** file in the root directory with the necessary crendentials:
 
 ```sh
@@ -57,17 +61,27 @@ Not yet available
 
 Linux & OS X:
 
-```sh
-npm start
-Open Chrome (or your favorite browser)
-Go to: localhost:7000
-```
+1. `npm start`
 
-## REST API Documentation
+2. `Open Chrome (or your favorite browser)`
 
-### GET api/
+3. `Go to: localhost:3000`
 
-__Return__
+## REST API
+
+### Get API
+
+URL: `api/`
+
+Method: GET
+
+URL Params: N/A
+
+Data Params: N/A
+
+Success Response Codes: 200
+
+Success Response Content:
 ```sh
 {
   "version": "1.0",
@@ -75,43 +89,83 @@ __Return__
 }
 ```
 
-### POST api/users
+Error Response Codes: N/A
 
-__Parameters__
+### Create User
+
+URL: `api/users`
+
+Method: POST
+
+URL Params: N/A
+
+Data Params: 
 ```sh
 {
   "username": "Qlik"
 }
 ```
-__Return__
-- HTTP 201 ('User created')
-- HTTP 400 ('Missing username')
-- HTTP 409 ('Username already exists')
-- HTTP 500 ('Server error')
 
-### POST api/users/login
+Success Response Codes: 201
 
-__parameters__
+Success Response Content:
+`"User Created"`
+
+Error Resonse Codes:
+- 400 `"Missing username"`
+- 409 `"Username already exists"`
+- 500 `"Server error"`
+
+### Authenticate User
+
+URL: `api/users/login`
+
+Method: POST
+
+URL Params: N/A
+
+Data Params:
 ```sh
 {
   "username": "Qlik"
 }
 ```
-__Return__
-- HTTP 201 ('Authenticated')
-- HTTP 400 ('Missing username')
-- HTTP 404 ('User does not exist')
-- HTTP 500 ('Server error')
 
-### GET api/users
+Success Response Codes: 200
 
-__Return__
-- HTTP 200 An array of usernames
-- HTTP 404 ('No users are registered in the system')
+Success Response Content:
+`'Authenticated'`
 
-### POST api/messages
+Error Response Codes:
+- 400 `"Missing username"`
+- 404 `"User does not exist"`
+- 500 `"Server error"`
 
-__Parameters__
+### Get All Users
+
+Method: GET
+
+URL: `api/users`
+
+URL Params: N/A
+
+Data Params: N/A
+
+Success Response Codes: 200
+
+Success Response Content: `Array of usernames`
+
+Error Response Codes: 404 `"No users are registered in the system"`
+
+### Post Message
+
+Method: POST
+
+URL: `api/messages`
+
+URL Params: N/A
+
+Data Params:
 ```sh
 {
   "username": "Qlik",
@@ -120,46 +174,82 @@ __Parameters__
 }
 ```
 
-__Return__
-- HTTP 201 ('Message submitted')
-- HTTP 400 ('Missing subject')
-- HTTP 400 ('Missing content')
-- HTTP 500 ('Server error')
+Success Response Codes: 201
 
-### GET api/messages
+Success Response Content: `"Message Submitted"`
 
-__Return__
-- HTTP 200 An array of messages
-- HTTP 404 ('Messages not found')
-- HTTP 500 ('Server error')
+Error Response Codes:
+- 400 `"Missing subject"`
+- 400 `"Missing content"`
+- 500 `"Server error"`
 
-### GET api/messages/:messageID
+### Get All Messages
 
-__Parameter__
-- messageID must be a positive number! Otherwise It won't match the route!
+Method: GET
 
-__Return__
-- HTTP 200 A single array of the message
-- HTTP 404 ('Message not found')
-- HTTP 500 ('Server error')
+URL: `api/messages`
 
-### GET api/messages/:messageID/palindrome
+URL Params: N/A
 
-__Parameter__
-- messageID must be a positive number! Otherwise It won't match the route!
+Data Params: N/A
 
-__Return__
-- HTTP 200 true
-- HTTP 200 false
+Success Response Codes: 200
 
-### DELETE api/messages/:messageID
+Success Response Content: `Array of messages`
 
-__Parameter__
-- messageID must be a positive number! Otherwise It won't match the route!
+Error Response Codes:
+- 404 `"Messages not found"`
+- 500 `"Server error"`
 
-__Return__
-- HTTP 204 ('Message deleted')
-- HTTP 500 ('Server error')
+### Get Message
+
+Method: GET
+
+URL: `api/messages/:messageID`
+
+URL Params: messageID must be a positive number!
+
+Data Params: N/A
+
+Success Response Codes: 200
+
+Success Response Content: `A Message Array`
+
+Error response Codes:
+- 404 `"Message not found"`
+- 500 `"Server error"`
+
+### Check Palindrome
+
+Method: GET
+
+URL: `api/messages/:messageID/palindrome`
+
+URL Params: messageID must be a positive number!
+
+Data Params: N/A
+
+Success Response Codes: 200
+
+Success Response Content: `True`
+
+Error Response Codes: 200 `False`
+
+### Delete Message
+
+Method: DELETE
+
+URL: `api/messages/:messageID`
+
+URL Params: messageID must be a positive number
+
+Data Params: N/A
+
+Success Response Codes: 204
+
+Success Response Content: `"Message deleted"`
+
+Error Response Codes: 500 `"Server error"`
 
 ## Testing
 
@@ -175,26 +265,19 @@ node_modules/phantomjs/lib/phantom/bin/phantomjs: error while loading shared lib
 ```
 
 If this happens make sure that **libfontconfig** is installed.
-```sh
-sudo apt-get install libfontconfig
-```
+`sudo apt-get install libfontconfig`
 
-#### To run
-
-```sh
-npm test
-```
+1. `npm test`
 
 ![alt-text](https://image.ibb.co/crYLyw/Unit.jpg "Unit tests")
 
-
 ### e2e test
 
-```sh
-npm start
-npm run wd-start
-npm run test-e2e
-```
+1. `npm start`
+
+2. `npm run wd-start`
+
+3. `npm run test-e2e`
 
 ![alt-text](https://image.ibb.co/dY0O1G/e2e.jpg "e2e tests")
 
