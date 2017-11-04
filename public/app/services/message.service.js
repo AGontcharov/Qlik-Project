@@ -13,8 +13,7 @@
       createMessage: createMessage,
       getMessages: getMessages,
       getMessageByID: getMessageByID,
-      deleteMessageByID: deleteMessageByID,
-      isPalindrome: isPalindrome
+      deleteMessageByID: deleteMessageByID
     };
 
     return service;

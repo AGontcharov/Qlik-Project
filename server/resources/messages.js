@@ -75,7 +75,7 @@ module.exports = {
    */
   getMessageByID: function(req, res, next) {
 
-    db.query("SELECT MessageID, Subject, Content, Palindrome FROM Messages WHERE MessageID=?", req.params.id, function(err, rows, fields) {
+    db.query("SELECT * FROM Messages INNER JOIN Users on MessageID = Users.ID WHERE MessageID=?", req.params.id, function(err, rows, fields) {
 
       // HTTP 500 Internal
       if (err) return res.status(500).send('Server error');

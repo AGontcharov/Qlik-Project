@@ -6,7 +6,7 @@ var routes = require('./server/routes.js');
 
 var app = express();
 var port = process.env.PORT || 3000;
-var path = process.env.NODE_ENV ? '/dist' : '/public/app';
+var path = process.env.NODE_ENV === 'production' ? '/dist' : '/public/app';
 
 // Set the response headers
 app.use(function(req, res, next) {
@@ -32,5 +32,5 @@ app.get('*', function(req, res) {
 
 // Create HTTP server
 app.listen(port, function() {
-  console.log("Listening on port " + port);
+  console.log('Listening on port', port);
 });

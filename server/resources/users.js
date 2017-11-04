@@ -109,7 +109,7 @@ module.exports = {
 
     var username = req.body.username ? req.body.username : req.params.username;
     
-    db.query("SELECT ID FROM Users WHERE Username=? LIMIT 1", username, function(err, rows, fields) {
+    db.query("SELECT ID FROM Users WHERE Username=?", username, function(err, rows, fields) {
       
       // HTTP 500 Internal
       if (err) return res.status(500).send('Server error');
