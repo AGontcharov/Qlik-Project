@@ -15,7 +15,6 @@ describe('Home Controller', function() {
     // Spies
     spyOn(messageService, 'createMessage').and.returnValue(deferred.promise);
     spyOn(messageService, 'deleteMessageByID').and.returnValue(deferred.promise);
-    spyOn(messageService, 'isPalindrome').and.returnValue(deferred.promise);
 
     controller = $controller('home', {
       $scope: scope
@@ -96,46 +95,6 @@ describe('Home Controller', function() {
 
       // Resolve mock promise
       deferred.reject();
-      scope.$apply();
-    });
-  });
-
-  describe('is palindrome', function() {
-
-    var message;
-
-    beforeEach(function() {
-      message = {};
-    });
-
-    it('Should set message selected false', function() {
-      scope.isPalindrome(message);
-      expect(message.selected).toBeFalsy();
-    });
-
-    it('Should call the message service', function() {
-      scope.isPalindrome(message);
-
-      // messageService
-      expect(messageService.isPalindrome).toHaveBeenCalled();
-      expect(messageService.isPalindrome.calls.count()).toBe(1);
-    });
-
-    it('Should resolve the promise', function() {
-      scope.isPalindrome(message);
-
-      // Resolve mock promise
-      deferred.resolve({ data: 'Qlik' });
-      scope.$apply();
-
-      expect(message.palindrome).toBe('Qlik');
-    });
-
-    it('Should reject the promise', function() {
-      scope.isPalindrome(message);
-
-      // Resolve mock promise
-      deferred.reject(message);
       scope.$apply();
     });
   });

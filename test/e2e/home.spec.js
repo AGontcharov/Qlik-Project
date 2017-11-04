@@ -18,6 +18,19 @@ describe('Qlik Audition home', function() {
       if (err) throw err;
     });
 
+    // Check for existing user
+    db.query("SELECT * FROM Users WHERE Username='e2e'", function(err, rows, fields) {
+      if (err) throw err;
+
+      if (!rows.length) {
+
+        // Creating existing user
+        db.query("INSERT INTO Users (Username) VALUES ('e2e')", function(err, rows, fields) {
+          if (err) throw err;
+        });
+      }
+    });
+
     // Create user session
     home.createSession();
   });
@@ -73,10 +86,7 @@ describe('Qlik Audition home', function() {
   });
 
   it('Should be able to check if message contains a palindrome', function() {
-    home.clickMessage(1);
-    home.getPalindromeButton(1).click().then(function() {
-      expect(home.getPalindrome(1).isDisplayed()).toBeTruthy();
-    });
+    expect(home.getPalindrome(1).isDisplayed()).toBeTruthy();
   });
 
   it('Should be able to delete a message', function() {

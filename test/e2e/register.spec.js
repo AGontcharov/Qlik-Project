@@ -12,14 +12,12 @@ describe('Qlik Audition register', function() {
   beforeAll(function() {
     browser.manage().deleteAllCookies();
 
-    var id;
-
     db.query("Select ID FROM Users Where Username='e2e'", function(err, rows, field) {
       if (err) throw err;
 
       // Delete e2e user
       if (rows.length) {
-        id = rows[0].ID;
+        var id = rows[0].ID;
 
         db.query("DELETE FROM Messages WHERE Messages.ID='?'", id, function(err, rows, field) {
           if (err) throw err;

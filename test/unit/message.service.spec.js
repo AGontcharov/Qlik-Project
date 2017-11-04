@@ -45,15 +45,6 @@ describe('Message Service', function() {
     $httpBackend
       .when('DELETE', '/api/messages/1')
       .respond(204, { foo: 'Deleted' });
-
-    // GET api/messages/:messageID/palindrome
-    $httpBackend
-      .when('GET', '/api/messages/5/palindrome')
-      .respond(200, { foo: true });
-
-    $httpBackend
-      .when('GET', '/api/messages/7/palindrome')
-      .respond(200, { foo: false });
   }));
 
   afterEach(function() {
@@ -171,35 +162,6 @@ describe('Message Service', function() {
         // Assert
         expect(response.status).toBe(204);
         expect(response.data.foo).toBe('Deleted');
-      })
-      .catch(function(error) {});
-      $httpBackend.flush();
-    });
-  });
-
-  describe('Should GET api/messages/:messageID/palindrome', function() {
-
-    it('Should return true for message #5 (HTTP 200)', function() {
-
-      // Fetch promise
-      messageService.isPalindrome(5).then(function(response) {
-
-        // Assert
-        expect(response.status).toBe(200);
-        expect(response.data.foo).toBeTruthy();
-      })
-      .catch(function(error) {});
-      $httpBackend.flush();
-    });
-
-    it('Should return false for message #7 (HTTP 200)', function() {
-
-      // Fetch promise
-      messageService.isPalindrome(7).then(function(response) {
-
-        // Assert
-        expect(response.status).toBe(200);
-        expect(response.data.foo).toBeFalsy();
       })
       .catch(function(error) {});
       $httpBackend.flush();
