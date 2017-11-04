@@ -29,9 +29,8 @@ apiRouter.post('/messages', users.getUserID, messages.postMessage);
 apiRouter.get('/messages', messages.getMessages);
 
 // Match positive integers for these routes
-apiRouter.get('/messages/:messageID(\\d+)', messages.getMessageByID);
-apiRouter.delete('/messages/:messageID(\\d+)', messages.deleteMessageByID);
-apiRouter.get('/messages/:messageID(\\d+)/palindrome', messages.getMessageByID, messages.isPalindrome);
+apiRouter.get('/messages/:id(\\d+)', messages.getMessageByID);
+apiRouter.delete('/messages/:id(\\d+)', messages.deleteMessageByID);
 
 // Default response for requests not matched above
 apiRouter.use(function(req, res) {

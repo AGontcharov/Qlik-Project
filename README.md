@@ -238,9 +238,9 @@ Error Response Codes:
 
 Method: GET
 
-URL: `api/messages/:messageID`
+URL: `api/messages/:id`
 
-URL Params: messageID must be a positive number!
+URL Params: id must be a positive number!
 
 Data Params: N/A
 
@@ -264,29 +264,13 @@ Error response Codes:
 - 404 `"Message not found"`
 - 500 `"Server error"`
 
-### Check Palindrome
-
-Method: GET
-
-URL: `api/messages/:messageID/palindrome`
-
-URL Params: messageID must be a positive number!
-
-Data Params: N/A
-
-Success Response Codes: 200
-
-Success Response Content: `True`
-
-Error Response Codes: 200 `False`
-
 ### Delete Message
 
 Method: DELETE
 
-URL: `api/messages/:messageID`
+URL: `api/messages/:id`
 
-URL Params: messageID must be a positive number
+URL Params: id must be a positive number
 
 Data Params: N/A
 

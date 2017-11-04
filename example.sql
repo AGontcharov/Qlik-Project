@@ -28,10 +28,11 @@ CREATE TABLE `Messages` (
   `Subject` varchar(255) NOT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Content` text NOT NULL,
+  `Palindrome` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`MessageID`),
   KEY `ID` (`ID`),
   CONSTRAINT `Messages_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `Users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `Messages` (
 
 LOCK TABLES `Messages` WRITE;
 /*!40000 ALTER TABLE `Messages` DISABLE KEYS */;
-INSERT INTO `Messages` VALUES (1,2,'First Message!','2017-09-30 23:29:43','I got here first!'),(1,3,'Second Message','2017-09-30 23:41:12','This is a longer message and contains lorem ipsum\n\nNam id dictum felis, a finibus velit. Ut quis nibh faucibus, mollis ligula a, aliquet justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean dignissim dui eu dui semper molestie. Ut leo risus, facilisis a dolor eu, tempus pulvinar erat. Maecenas ut ligula ligula. Integer elementum ut leo at feugiat.'),(1,4,'This message contains a palindrome!!!','2017-09-30 23:41:47','Anna'),(2,5,'Empty Message','2017-10-01 00:21:02','Chrome won\'t let me leave this field empty because novalidate is not added ;_;'),(2,13,'SQL Injection','2017-10-01 01:21:01','(SELECT ID FROM Users LIMIT 1)'),(3,16,'Burgers','2017-10-01 02:25:57','Burgers or hotdogs?'),(1,21,'Expanding Footer','2017-10-01 06:20:47','What happens when another messages appears that causes the height of the browser to increase?'),(5,26,'Unit Testing','2017-10-02 09:22:03','Make it stop please!'),(5,27,'Another Palindrome','2017-10-02 09:23:04','1234554321');
+INSERT INTO `Messages` VALUES (1,2,'First Message!','2017-10-01 03:29:43','I got here first!',0),(1,3,'Second Message','2017-10-01 03:41:12','This is a longer message and contains lorem ipsum\n\nNam id dictum felis, a finibus velit. Ut quis nibh faucibus, mollis ligula a, aliquet justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean dignissim dui eu dui semper molestie. Ut leo risus, facilisis a dolor eu, tempus pulvinar erat. Maecenas ut ligula ligula. Integer elementum ut leo at feugiat.',0),(1,4,'This message contains a palindrome!!!','2017-10-01 03:41:47','Anna',1),(2,5,'Empty Message','2017-10-01 04:21:02','Chrome won\'t let me leave this field empty because novalidate is not added ;_;',0),(2,13,'SQL Injection','2017-10-01 05:21:01','(SELECT ID FROM Users LIMIT 1)',0),(3,16,'Burgers','2017-10-01 06:25:57','Burgers or hotdogs?',0),(1,21,'Expanding Footer','2017-10-01 10:20:47','What happens when another messages appears that causes the height of the browser to increase?',0),(5,26,'Unit Testing','2017-10-02 13:22:03','Make it stop please!',0),(5,27,'Another Palindrome','2017-10-02 13:23:04','1234554321',1),(1,28,'dsfasdfsa','2017-11-04 04:53:45','123321',1);
 /*!40000 ALTER TABLE `Messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-04 22:00:17
+-- Dump completed on 2017-11-04  0:54:35

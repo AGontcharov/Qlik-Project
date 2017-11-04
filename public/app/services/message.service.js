@@ -44,12 +44,6 @@
       .catch(function(response) { return errorHandle(response, 'Error deleting message by ID'); });
     }
 
-    function isPalindrome(id) {
-      return $http.get(BASE_URL + '/messages/' + id + '/palindrome')
-      .then(successHandle)
-      .catch(function(response) { return errorHandle(response, 'Error checking if message is palindrome'); });
-    }
-
     /**
      * Private function for handling request success
      * @param {Object} response - The response object

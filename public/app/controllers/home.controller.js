@@ -51,24 +51,6 @@
         console.log(error);
       });
     };
-
-    /**
-     * Checks if the selected message content is a palidrome
-     * @param {Object} message - The Message instance
-     */
-    $scope.isPalindrome = function(message) {
-      
-      // Prevent message contents from closing
-      message.selected = false;
-
-      messageService.isPalindrome(message.MessageID)
-      .then(function(response) {
-        message.palindrome = response.data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    };
     
     /**
      * Private function used to initializes the controller after every request

@@ -2,10 +2,10 @@
 
 var homePage = function() {
     
-  this.subject = element(by.model('message.subject'));
-  this.content = element(by.model('message.content'));
+  this.subject = element(by.model('::message.subject'));
+  this.content = element(by.model('::message.content'));
   this.submit = element.all(by.css('.btn-primary'));
-  this.messages = element.all(by.repeater('message in messages'));
+  this.messages = element.all(by.repeater('message in ::messages'));
 
   this.createSession = function() {
 
@@ -21,7 +21,7 @@ var homePage = function() {
   };
 
   this.clickMessage = function(id) {
-    return element(by.repeater('message in messages').row(id)).click();
+    return element(by.repeater('message in ::messages').row(id)).click();
   };
 
   // Getters
@@ -30,11 +30,11 @@ var homePage = function() {
   };
 
   this.getMessage = function(id) {
-    return element(by.repeater('message in messages').row(id));
+    return element(by.repeater('message in ::messages').row(id));
   };
 
   this.getContent = function(id) {
-    return element(by.repeater('message in messages').row(id).column('message.Content'));
+    return element(by.repeater('message in ::messages').row(id).column('::message.Content'));
   };
 
   this.getPalindrome = function(id) {

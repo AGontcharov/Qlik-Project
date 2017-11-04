@@ -1,6 +1,7 @@
 'use strict';
 
 var db = require('../database.js');
+var palindrome = require('../palindrome.js');
 
 module.exports = {
 
@@ -22,9 +23,14 @@ module.exports = {
     if (!req.body.subject) return res.status(400).send('Missing subject');
     if (!req.body.content) return res.status(400).send('Missing content');
                
-    var args = [res.locals.userID, req.body.subject, req.body.content];
+    var args = [
+      res.locals.userID,
+      req.body.subject,
+      req.body.content,
+      palindrome(req.body.content)
+    ];
     
-    db.query("INSERT INTO Messages (ID, Subject, Content) VALUES (?, ?, ?)", args, function(err, rows, fields) {
+    db.query("INSERT INTO Messages (ID, Subject, Content, Palindrome) VALUES (?, ?, ?, ?)", args, function(err, rows, fields) {
       
       // HTTP 500 Internal
       if (err) return res.status(500).send('Server error');
@@ -69,7 +75,7 @@ module.exports = {
    */
   getMessageByID: function(req, res, next) {
 
-    db.query("SELECT MessageID, Subject, Content FROM Messages WHERE MessageID=?", req.params.messageID, function(err, rows, fields) {
+    db.query("SELECT MessageID, Subject, Content, Palindrome FROM Messages WHERE MessageID=?", req.params.id, function(err, rows, fields) {
 
       // HTTP 500 Internal
       if (err) return res.status(500).send('Server error');
@@ -77,14 +83,8 @@ module.exports = {
       // HTTP 404 Not Found
       if (!rows.length) return res.status(404).send('Message not found');
 
-      // Check if palindrome action has been called on the message
-      if (req.route.path === '/messages/:messageID(\\d+)/palindrome') {
-        res.locals.palindrome = rows[0].Content;
-        next();
-      }
-
       // HTTP 200 Ok
-      else return res.status(200).send(rows[0]);
+      return res.status(200).send(rows[0]);
     });
   },
 
@@ -100,7 +100,7 @@ module.exports = {
    */
   deleteMessageByID: function(req, res, next) {
     
-    db.query("DELETE From Messages WHERE MessageID=?", req.params.messageID, function(err, rows, fields) {
+    db.query("DELETE From Messages WHERE MessageID=?", req.params.id, function(err, rows, fields) {
 
       // HTTP 500 Internal
       if (err) return res.status(500).send('Server error');
@@ -108,36 +108,5 @@ module.exports = {
       // HTTP 204 Deleted
       return res.status(204).send('Message delete');
     });
-  },
-
-  /**
-   * A helper function used to check if a string is a palindrome
-   * @params {String} locals.palindrome - The string to check
-   *
-   * @params {Object} req - The request object
-   * @params {Object} res - The response object
-   * @params {Object} next - The callback for the next matching middleware
-   *
-   * @returns {HTTP 200 {true} if palindrome, HTTP 200 {false} otherwise}
-   */
-  isPalindrome: function(req, res, next) {
-
-    // Allow validating case insentive phrases
-    var palindrome = res.locals.palindrome.toUpperCase().replace(/ /g, '');
-    var strlen = palindrome.length - 1;
-
-    // Iterate over the string
-    for (var i = 0; i < palindrome.length; i++) {
-      
-      // Post decrement strlen after comparison
-      if (palindrome[i] !== palindrome[strlen--]) {
-
-        // HTTP 200k Ok False
-        return res.status(200).send(false);
-      }
-    }
-
-    // HTTP 200 Ok True
-    return res.status(200).send(true);
   }
 };
