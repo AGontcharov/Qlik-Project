@@ -8,7 +8,7 @@
     "wd-update": "node_modules/protractor/bin/webdriver-manager update",
     "wd-start": "node_modules/protractor/bin/webdriver-manager start",
     "test": "./node_modules/karma/bin/karma start karma.conf.js",
-    "test-e2e": "./node_modules/protractor/bin/protractor protractor.conf.js"
+    "test:e2e": "./node_modules/protractor/bin/protractor protractor.conf.js"
   },
   "author": "Alexander Gontcharov",
   "repository": {
@@ -39,6 +39,7 @@
     "gulp-jshint": "^2.0.4",
     "gulp-uglify": "^3.0.0",
     "jasmine": "^2.8.0",
+    "jasmine-core": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",

@@ -11,8 +11,6 @@
      * Submits the register form and authenticates user account
      */
     $scope.submit = function() {
-
-      // Prevent submitting invalid forms
       if ($scope.registerForm.$invalid) return;
 
       userService.createUser($scope.account)
@@ -20,7 +18,6 @@
         authentication.createSession($scope.account);
       })
       .catch(function(error) {
-        console.log(error);
         $scope.error = true;
       });
     };

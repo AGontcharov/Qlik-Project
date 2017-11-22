@@ -33,9 +33,6 @@ describe('Home Controller', function() {
     it('Should call the message service', function() {
       scope.message = {};
       scope.submit();
-
-      // messageService
-      expect(messageService.createMessage).toHaveBeenCalled();
       expect(messageService.createMessage.calls.count()).toBe(1);
     });
 
@@ -62,23 +59,10 @@ describe('Home Controller', function() {
     });
   });
 
-  describe('selected message', function() {
-
-    it('Should return the inverse value of message.selected', function() {
-      var message = { selected: false };
-      
-      scope.selectedMessage(message);
-      expect(message.selected).toBeTruthy();
-    });
-  });
-
   describe('delete message', function() {
 
     it('Should call the message service', function() {
       scope.deleteMessage();
-
-      // messageService
-      expect(messageService.deleteMessageByID).toHaveBeenCalled();
       expect(messageService.deleteMessageByID.calls.count()).toBe(1);
     });
 

@@ -20,7 +20,6 @@
         authentication.createSession($scope.credentials);
       })
       .catch(function(error) {
-        console.log(error);
         $scope.error = true;
       });
     };

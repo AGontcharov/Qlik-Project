@@ -30,19 +30,10 @@
     };
 
     /**
-     * Toggles between viewing messages
-     * @param {Object} message - The message instance
-     */
-    $scope.selectedMessage = function(message) {
-      message.selected  = message.selected ? false : true;
-    };
-
-    /**
      * Deletes the selected message
      * @param {Number} id - The Message ID
      */
     $scope.deleteMessage = function(id) {
-
       messageService.deleteMessageByID(id)
       .then(function(response) {
         activate();
@@ -62,7 +53,6 @@
         $scope.messages = response.data;
       })
       .catch(function(error) {
-        console.log(error);
         $scope.newsfeed = false;
       });
     }

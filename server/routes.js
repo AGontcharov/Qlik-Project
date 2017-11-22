@@ -10,7 +10,6 @@ var apiRouter = express.Router();
 // Router middleware for every request
 apiRouter.use(function(req, res, next) {
   console.log(req.method, req.url);
-  console.log(req.body);
   next();
 });
 
