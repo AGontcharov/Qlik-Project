@@ -4,7 +4,6 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jshintStylish = require('jshint-stylish');
 var jshintConfig = require('./package').jshintConfig;
-var jscs = require('gulp-jscs');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var prefix = require('gulp-autoprefixer');
@@ -26,7 +25,7 @@ gulp.task('default', [
   'index'
 ]);
 
-// JavaScript Jshint and JSCS
+// JavaScript Jshint
 gulp.task('lint', function() {
   return gulp.src([
     'public/app/**/*.js',
@@ -35,9 +34,7 @@ gulp.task('lint', function() {
     '*.js'
   ])
   .pipe(jshint(jshintConfig))
-  .pipe(jscs())
   .pipe(jshint.reporter('jshint-stylish'))
-  .pipe(jscs.reporter());
 });
 
 // Minify JavaScript
